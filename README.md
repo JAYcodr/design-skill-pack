@@ -1,6 +1,6 @@
 # design-skill-pack
 
-四个 Agent Skill，给会写文档和做页面的人用。全部是**纯本地、零 API Key**：一个 Python 文件 + 一堆 markdown 参考资料 + HTML 模板，脚本只依赖 Python 3 标准库或装得上的常规包。
+五个 Agent Skill，给会写文档、做页面、画点东西的人用。全部是**纯本地、零 API Key**：一个 Python 文件 + 一堆 markdown 参考资料 + HTML 模板，脚本只依赖 Python 3 标准库或装得上的常规包。
 
 | Skill | 干什么 | 依赖 |
 |---|---|---|
@@ -8,6 +8,7 @@
 | [`pdf-designer`](skills/pdf-designer/) | PDF 的**决策层**：先读内容感受气质，再定风格/字体/空间/强调，最后交给 elegant-pdf 渲染。10 套风格体系 + 内容→风格匹配指南 | 无（纯文档 + 配套 elegant-pdf） |
 | [`frontend-design`](skills/frontend-design/) | 做任何网页/落地页/UI 之前的必读：三条硬红线 + 案例教材 + 交付门，附 `quick_check.py` 自动查裂图、字号过小、缺 viewport 之类的硬伤 | Python 3 标准库 |
 | [`github-trending-digest`](skills/github-trending-digest/) | 把 GitHub Trending 抓下来，做成单文件 HTML 中文晨报：天文台星图主题、星座分版块、全局连号、零外部依赖 | Python 3 标准库 |
+| [`ai-musume`](skills/ai-musume/) | 给模型/产品画「AI 娘」拟人立绘：七条公式锁住同系列感，附 8 个角色的完整可用 prompt（Grok 两版 / Claude / GPT / Kimi / Gemini / MiniMax / DeepSeek 鲸鱼娘） | 无（纯文档 + 生图工具） |
 
 ## 安装
 
@@ -45,7 +46,7 @@ pip3 install reportlab         # CJK 最稳的一条
 npm install -g @mermaid-js/mermaid-cli
 ```
 
-其余三个 skill 不需要装任何东西。
+其余几个 skill 不需要装任何东西。
 
 ## 直接用
 
@@ -87,12 +88,13 @@ ReportLab 主题：`warm-academic` `nord-frost` `github-light` `ocean-breeze` �
 
 `github-trending-digest` 带 6 套完整示例，在 [`assets/demos/`](skills/github-trending-digest/assets/demos/)，直接用浏览器打开 .html 就能看。
 
-## 三个 skill 怎么配合
+## 几个 skill 怎么配合
 
 ```
 写内容 → pdf-designer（定风格）→ elegant-pdf（出 PDF）
 做页面 → frontend-design（守红线、写逐屏稿）→ 交付前 quick_check.py
 看趋势 → github-trending-digest（抓 + 渲染）→ 单文件 HTML
+画角色 → ai-musume（七条公式 → 白底全身立绘 → 定稿后垫图出变体）
 ```
 
 ## License
