@@ -2,6 +2,7 @@
 name: ai-musume
 description: "给模型/产品做「AI娘」拟人立绘：一套可并排的白底全身设定图系列（Grok 格蕾 / Grok 战斧版 / Claude / GPT / Kimi 青弥 / Gemini / MiniMax / DeepSeek 大肥鱼）。当用户要画某个 AI 公司的拟人角色、要做「同系列并排」「AI娘立绘」，或要给已有角色出表情组、换姿势、场景变体时使用。核心流程：锁白底线稿格式 → 一个独有轮廓 + 一个重复四到六次的符号 + 一个随身物 → 3:4 出图 → 拿满意那张垫图只改姿势段。不要用于纯背景图、海报排版、或已有真人/IP 角色的二创。"
 metadata:
+  author: "design-skill-pack <noreply@example.com>"
   version: "1.0.1"
 ---
 

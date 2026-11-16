@@ -10,6 +10,7 @@ description: >
 version: 2.1.0
 category: productivity
 metadata:
+  author: "design-skill-pack <noreply@example.com>"
   hermes:
     triggers:
       - "markdown 转精美 PDF"

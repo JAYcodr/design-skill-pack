@@ -8,6 +8,7 @@ description: >
 version: 1.0.0
 category: creative
 metadata:
+  author: "design-skill-pack <noreply@example.com>"
   hermes:
     triggers:
       - "PDF 设计"

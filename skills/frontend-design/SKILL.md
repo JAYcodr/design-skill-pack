@@ -1,6 +1,8 @@
 ---
 name: frontend-design
 description: 在任何前端界面设计或构建之前使用——网页、落地页、demo、UI 组件、界面改造，以及"参考这个网站/视频/截图做一个"类请求。三条硬红线守底线，案例教材（references/cases.md）展示什么叫"敢"——大胆不能被规则指令，只能被样例传染。真实品牌/产品任务先过事实与资产核验，多屏设计先写逐屏稿，交付前用截图与 quick_check 留证据。也用于诊断已有界面的土/廉价/平庸问题。不要用于纯后端逻辑或无视觉产出的任务。
+metadata:
+  author: "design-skill-pack <noreply@example.com>"
 ---
 
 # 前端设计：三条红线 + 案例教材 + 交付门

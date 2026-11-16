@@ -5,7 +5,7 @@ description: 把 GitHub Trending 榜单做成一份可直接交付的单文件 H
 license: MIT
 agent_created: true
 metadata:
-  author: WorkBuddy
+  author: "WorkBuddy <noreply@example.com>"
 display_name: "GitHub 趋势晨报"
 display_name_en: "GitHub Trending Digest"
 description_zh: "抓取 GitHub Trending 并生成「天文台星图」风格的单文件 HTML 晨报：交互式星座图 + 观测日志，分版块、全局连续编号，零外部依赖。"

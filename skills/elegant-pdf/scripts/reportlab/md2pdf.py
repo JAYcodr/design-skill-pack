@@ -497,7 +497,7 @@ def _twemoji_path(seq):
     url = f"https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/72x72/{code}.png"
     try:
         req = urllib.request.Request(url, headers={"User-Agent": "any2pdf/1.0"})
-        with urllib.request.urlopen(req, timeout=2.0) as resp:
+        with urllib.request.urlopen(req, timeout=2.0) as resp:  # nosec B310 - url is the hardcoded https CDN literal above
             data = resp.read()
         if data:
             with open(path, "wb") as f:
@@ -1170,10 +1170,10 @@ class PDFBuilder:
             ext = os.path.splitext(parsed.path)[1].lower()
             if ext not in (".png", ".jpg", ".jpeg", ".gif", ".bmp"):
                 ext = ".img"
-            path = os.path.join(cache_dir, hashlib.sha1(src.encode("utf-8")).hexdigest() + ext)
+            path = os.path.join(cache_dir, hashlib.sha256(src.encode("utf-8")).hexdigest() + ext)
             if not os.path.exists(path):
                 req = urllib.request.Request(src, headers={"User-Agent": "any2pdf/1.0"})
-                with urllib.request.urlopen(req, timeout=10) as resp:
+                with urllib.request.urlopen(req, timeout=10) as resp:  # nosec B310 - scheme already restricted to http/https above
                     data = resp.read()
                 with open(path, "wb") as f:
                     f.write(data)

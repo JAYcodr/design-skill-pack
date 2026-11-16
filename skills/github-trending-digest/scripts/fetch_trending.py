@@ -67,7 +67,7 @@ def fetch(url, retries=3, timeout=30):
                 "Accept": "text/html,application/xhtml+xml",
                 "Accept-Language": "en-US,en;q=0.9",
             })
-            with urllib.request.urlopen(req, timeout=timeout) as r:
+            with urllib.request.urlopen(req, timeout=timeout) as r:  # nosec B310 - callers only pass github.com URLs built here
                 return r.read().decode("utf-8", "replace")
         except (urllib.error.URLError, urllib.error.HTTPError, TimeoutError) as e:
             last = e
