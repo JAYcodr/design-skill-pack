@@ -1,0 +1,583 @@
+{
+ "captured_at": "2026-07-31T13:16:29+08:00",
+ "title": "GitHub 每日趋势晨报",
+ "headline": "GitHub <em>每日趋势</em>晨报",
+ "kicker": "GitHub Trending · Daily Digest",
+ "scope": "今日新增 Star（daily）",
+ "source_html": "<a href=\"https://github.com/trending?since=daily\" target=\"_blank\" rel=\"noopener noreferrer\">github.com/trending（daily）</a>",
+ "footer_note": "按 <strong>模型与多模态 / Agent 与 AI 应用 / 开发工具与效率 / 框架与基础设施 / 学习资源与精选清单</strong> 五个固定版块分组，序号全局连续编号。<br>条目取自 GitHub Trending 今日榜（总榜 + 8 个语言分榜），去重后按今日新增 Star 排序择优筛选。摘要为中文重写，不超过 60 字。",
+ "sections": [
+  {
+   "id": "models",
+   "name": "模型与多模态",
+   "icon": "01",
+   "color": "var(--s1)",
+   "bg": "var(--s1b)",
+   "desc": "语音、视觉、3D 与生成式模型的开源实现与推理工程。"
+  },
+  {
+   "id": "agents",
+   "name": "Agent 与 AI 应用",
+   "icon": "02",
+   "color": "var(--s2)",
+   "bg": "var(--s2b)",
+   "desc": "编码 Agent、技能包、沙箱与治理工具，今日最热的一条主线。"
+  },
+  {
+   "id": "tools",
+   "name": "开发工具与效率",
+   "icon": "03",
+   "color": "var(--s3)",
+   "bg": "var(--s3b)",
+   "desc": "编辑器、终端工具、桌面效率软件与调试链路。"
+  },
+  {
+   "id": "infra",
+   "name": "框架与基础设施",
+   "icon": "04",
+   "color": "var(--s4)",
+   "bg": "var(--s4b)",
+   "desc": "语言运行时、后端框架、CI/CD、可观测性与自托管服务。"
+  },
+  {
+   "id": "learn",
+   "name": "学习资源与精选清单",
+   "icon": "05",
+   "color": "var(--s5)",
+   "bg": "var(--s5b)",
+   "desc": "教程、开源书籍与 awesome 清单，适合囤起来慢慢啃。"
+  }
+ ],
+ "items": [
+  {
+   "s": "models",
+   "repo": "huggingface/speech-to-speech",
+   "lang": "Python",
+   "stars": 9169,
+   "today": 628,
+   "forks": 1657,
+   "src": "总榜 #1",
+   "sum": "用开源模型搭建可本地运行的语音对话 Agent，串起识别、大模型与合成完整链路。"
+  },
+  {
+   "s": "models",
+   "repo": "deepfakes/faceswap",
+   "lang": "Python",
+   "stars": 56726,
+   "today": 619,
+   "forks": 13598,
+   "src": "Python 榜",
+   "sum": "老牌开源换脸工具链，覆盖素材处理、模型训练到视频合成的全流程。"
+  },
+  {
+   "s": "models",
+   "repo": "microsoft/VibeVoice",
+   "lang": "Python",
+   "stars": 51629,
+   "today": 484,
+   "forks": 6221,
+   "src": "Python 榜",
+   "sum": "微软开源的前沿语音 AI 模型，面向长文本、多说话人的高质量语音生成。"
+  },
+  {
+   "s": "models",
+   "repo": "microsoft/TRELLIS.2",
+   "lang": "Python",
+   "stars": 9651,
+   "today": 439,
+   "forks": 712,
+   "src": "Python 榜",
+   "sum": "微软 3D 生成模型第二代，用紧凑的结构化隐变量直接生成三维资产。"
+  },
+  {
+   "s": "models",
+   "repo": "harry0703/MoneyPrinterTurbo",
+   "lang": "Python",
+   "stars": 100699,
+   "today": 403,
+   "forks": 14106,
+   "src": "Python 榜",
+   "sum": "给一个主题或关键词，AI 自动化工作流一键产出配音配字幕的高清短视频。"
+  },
+  {
+   "s": "models",
+   "repo": "PaddlePaddle/PaddleOCR",
+   "lang": "Python",
+   "stars": 86613,
+   "today": 93,
+   "forks": 8404,
+   "src": "Python 榜",
+   "sum": "轻量 OCR 工具箱，把 PDF 与图片文档解析成可直接喂给大模型的结构化数据。"
+  },
+  {
+   "s": "models",
+   "repo": "lllyasviel/Fooocus",
+   "lang": "Python",
+   "stars": 51666,
+   "today": 63,
+   "forks": 7266,
+   "src": "Python 榜",
+   "sum": "极简文生图界面，把复杂参数全部藏起来，让你只专注于写好提示词。"
+  },
+  {
+   "s": "models",
+   "repo": "vllm-project/vllm-ascend",
+   "lang": "C++",
+   "stars": 2532,
+   "today": 10,
+   "forks": 566,
+   "src": "C++ 榜",
+   "sum": "vLLM 的昇腾 NPU 硬件插件，由社区维护，让国产算力跑通高吞吐推理。"
+  },
+  {
+   "s": "agents",
+   "repo": "different-ai/openwork",
+   "lang": "TypeScript",
+   "stars": 18891,
+   "today": 915,
+   "forks": 1421,
+   "src": "总榜 #4",
+   "sum": "Claude Cowork 的开源替代品，基于 opencode 打造的协作式 AI 工作台。"
+  },
+  {
+   "s": "agents",
+   "repo": "1jehuang/jcode",
+   "lang": "Rust",
+   "stars": 14270,
+   "today": 812,
+   "forks": 986,
+   "src": "Rust 榜",
+   "sum": "自称最省内存的编码 Agent 运行壳，用 Rust 重写以压低常驻资源占用。"
+  },
+  {
+   "s": "agents",
+   "repo": "affaan-m/ECC",
+   "lang": "JavaScript",
+   "stars": 236323,
+   "today": 804,
+   "forks": 18402,
+   "src": "总榜 #14",
+   "sum": "Agent 运行壳性能优化系统，整合技能、直觉、记忆、安全与研究优先开发流。"
+  },
+  {
+   "s": "agents",
+   "repo": "Panniantong/Agent-Reach",
+   "lang": "Python",
+   "stars": 63035,
+   "today": 543,
+   "forks": 4870,
+   "src": "Python 榜",
+   "sum": "给 AI Agent 装上眼睛，可读取搜索推特、Reddit、油管、GitHub 与小红书。"
+  },
+  {
+   "s": "agents",
+   "repo": "mvanhorn/last30days-skill",
+   "lang": "Python",
+   "stars": 55666,
+   "today": 378,
+   "forks": 4123,
+   "src": "总榜 #7",
+   "sum": "Agent 技能包：跨 Reddit、X、油管、HN 检索近 30 天信息并综合成报告。"
+  },
+  {
+   "s": "agents",
+   "repo": "JuliusBrussee/caveman",
+   "lang": "JavaScript",
+   "stars": 94698,
+   "today": 368,
+   "forks": 7811,
+   "src": "JavaScript 榜",
+   "sum": "让 Claude Code 用「原始人语」说话的技能，官方宣称可砍掉 65% token。"
+  },
+  {
+   "s": "agents",
+   "repo": "openai/codex",
+   "lang": "Rust",
+   "stars": 102700,
+   "today": 245,
+   "forks": 14721,
+   "src": "Rust 榜",
+   "sum": "OpenAI 官方轻量编码 Agent，直接跑在终端里，不必切回网页端操作。"
+  },
+  {
+   "s": "agents",
+   "repo": "tinyhumansai/openhuman",
+   "lang": "Rust",
+   "stars": 35719,
+   "today": 67,
+   "forks": 2688,
+   "src": "Rust 榜",
+   "sum": "个人 AI 超级智能：本地优先沉淀你的人生记忆，并统一编排各类工具。"
+  },
+  {
+   "s": "agents",
+   "repo": "microsoft/agent-governance-toolkit",
+   "lang": "Python",
+   "stars": 5509,
+   "today": 62,
+   "forks": 499,
+   "src": "Python 榜",
+   "sum": "微软 Agent 治理工具包：策略强制、零信任身份、执行沙箱与可靠性工程。"
+  },
+  {
+   "s": "agents",
+   "repo": "nolabs-ai/nono",
+   "lang": "Rust",
+   "stars": 3364,
+   "today": 52,
+   "forks": 241,
+   "src": "Rust 榜",
+   "sum": "几秒钟给任意 AI Agent 套上沙箱，零配置、零额外延迟。"
+  },
+  {
+   "s": "agents",
+   "repo": "kenn-io/agentsview",
+   "lang": "Go",
+   "stars": 4642,
+   "today": 17,
+   "forks": 318,
+   "src": "Go 榜",
+   "sum": "本地优先的编码 Agent 会话检索与分析面板，可统计 token 消耗与使用洞察。"
+  },
+  {
+   "s": "tools",
+   "repo": "opengeos/GeoLibre",
+   "lang": "TypeScript",
+   "stars": 4555,
+   "today": 640,
+   "forks": 392,
+   "src": "TypeScript 榜",
+   "sum": "轻量云原生 GIS 平台，直接在浏览器里完成地理空间数据的可视化与分析。"
+  },
+  {
+   "s": "tools",
+   "repo": "pascalorg/editor",
+   "lang": "TypeScript",
+   "stars": 20206,
+   "today": 625,
+   "forks": 1533,
+   "src": "总榜 #6",
+   "sum": "在浏览器里创建并分享 3D 建筑设计项目的协作式编辑器。"
+  },
+  {
+   "s": "tools",
+   "repo": "agavra/tuicr",
+   "lang": "Rust",
+   "stars": 1910,
+   "today": 190,
+   "forks": 132,
+   "src": "总榜 #13",
+   "sum": "带 vim 键位的终端代码评审工具，把 Code Review 整个搬进 TUI。"
+  },
+  {
+   "s": "tools",
+   "repo": "geo-tp/ESP32-Bit-Pirate",
+   "lang": "C++",
+   "stars": 4652,
+   "today": 152,
+   "forks": 331,
+   "src": "C++ 榜",
+   "sum": "基于 ESP32 的硬件破解工具，配网页 CLI，几乎能说所有常见总线协议。"
+  },
+  {
+   "s": "tools",
+   "repo": "JOYCEQL/magic-resume",
+   "lang": "TypeScript",
+   "stars": 9309,
+   "today": 119,
+   "forks": 1215,
+   "src": "TypeScript 榜",
+   "sum": "免费在线 AI 简历编辑器，支持实时预览、多模板排版与一键导出。"
+  },
+  {
+   "s": "tools",
+   "repo": "rustdesk/rustdesk",
+   "lang": "Rust",
+   "stars": 119277,
+   "today": 83,
+   "forks": 16072,
+   "src": "Rust 榜",
+   "sum": "开源远程桌面，可完全自托管，是 TeamViewer 的高人气替代方案。"
+  },
+  {
+   "s": "tools",
+   "repo": "ChromeDevTools/chrome-devtools-mcp",
+   "lang": "TypeScript",
+   "stars": 48139,
+   "today": 80,
+   "forks": 3312,
+   "src": "总榜 #11",
+   "sum": "官方 MCP 服务，把 Chrome 开发者工具的调试能力开放给编码 Agent。"
+  },
+  {
+   "s": "tools",
+   "repo": "microsoft/PowerToys",
+   "lang": "C",
+   "stars": 137201,
+   "today": 70,
+   "forks": 8368,
+   "src": "总榜 #9",
+   "sum": "微软 Windows 效率工具合集，窗口管理、批量改名、取色等一应俱全。"
+  },
+  {
+   "s": "tools",
+   "repo": "zed-industries/zed",
+   "lang": "Rust",
+   "stars": 87790,
+   "today": 68,
+   "forks": 7106,
+   "src": "Rust 榜",
+   "sum": "Atom 与 Tree-sitter 原班人马打造的高性能多人协作代码编辑器。"
+  },
+  {
+   "s": "tools",
+   "repo": "astral-sh/uv",
+   "lang": "Rust",
+   "stars": 88147,
+   "today": 53,
+   "forks": 2871,
+   "src": "Rust 榜",
+   "sum": "Rust 写的极速 Python 包与项目管理器，可一并替代 pip 与 virtualenv。"
+  },
+  {
+   "s": "tools",
+   "repo": "larksuite/cli",
+   "lang": "Go",
+   "stars": 16011,
+   "today": 40,
+   "forks": 904,
+   "src": "Go 榜",
+   "sum": "飞书官方命令行工具，同时面向人类与 AI Agent 设计，覆盖多类开放能力。"
+  },
+  {
+   "s": "tools",
+   "repo": "getarcaneapp/arcane",
+   "lang": "Go",
+   "stars": 6792,
+   "today": 35,
+   "forks": 412,
+   "src": "Go 榜",
+   "sum": "现代化 Docker 管理面板，把容器运维做得人人都能上手。"
+  },
+  {
+   "s": "infra",
+   "repo": "dani-garcia/vaultwarden",
+   "lang": "Rust",
+   "stars": 64643,
+   "today": 73,
+   "forks": 3562,
+   "src": "Rust 榜",
+   "sum": "Rust 实现的轻量 Bitwarden 兼容服务端，适合个人自托管密码库。"
+  },
+  {
+   "s": "infra",
+   "repo": "clockworklabs/SpacetimeDB",
+   "lang": "Rust",
+   "stars": 24940,
+   "today": 62,
+   "forks": 613,
+   "src": "Rust 榜",
+   "sum": "把数据库与服务端逻辑合二为一的实时数据库，主打多人在线应用。"
+  },
+  {
+   "s": "infra",
+   "repo": "directus/directus",
+   "lang": "TypeScript",
+   "stars": 36940,
+   "today": 61,
+   "forks": 5482,
+   "src": "TypeScript 榜",
+   "sum": "灵活的后端平台，把任意数据库变成无头 CMS、后台面板或自定义应用。"
+  },
+  {
+   "s": "infra",
+   "repo": "golang/go",
+   "lang": "Go",
+   "stars": 135434,
+   "today": 35,
+   "forks": 18521,
+   "src": "Go 榜",
+   "sum": "Go 语言主仓库，编译器、运行时与标准库的上游源码都在这里。"
+  },
+  {
+   "s": "infra",
+   "repo": "netdata/netdata",
+   "lang": "Go",
+   "stars": 79947,
+   "today": 31,
+   "forks": 6134,
+   "src": "Go 榜",
+   "sum": "开箱即用的全栈可观测性平台，秒级采集指标并自动生成仪表盘。"
+  },
+  {
+   "s": "infra",
+   "repo": "ansible/ansible",
+   "lang": "Python",
+   "stars": 69933,
+   "today": 29,
+   "forks": 24202,
+   "src": "总榜 #10",
+   "sum": "无 Agent 的 IT 自动化平台，用 YAML 描述部署、配置与编排流程。"
+  },
+  {
+   "s": "infra",
+   "repo": "certimate-go/certimate",
+   "lang": "Go",
+   "stars": 8988,
+   "today": 27,
+   "forks": 842,
+   "src": "Go 榜",
+   "sum": "开源自托管 SSL 证书工具，自动完成申请、部署与续期的全周期管理。"
+  },
+  {
+   "s": "infra",
+   "repo": "jenkinsci/jenkins",
+   "lang": "Java",
+   "stars": 26329,
+   "today": 25,
+   "forks": 9364,
+   "src": "总榜 #12",
+   "sum": "老牌自动化服务器，插件生态庞大，至今仍是自建 CI 的主力选择。"
+  },
+  {
+   "s": "infra",
+   "repo": "WhiskeySockets/Baileys",
+   "lang": "JavaScript",
+   "stars": 10475,
+   "today": 19,
+   "forks": 4211,
+   "src": "总榜 #5",
+   "sum": "基于 WebSocket 的 WhatsApp Web TS API，无需浏览器即可收发消息。"
+  },
+  {
+   "s": "infra",
+   "repo": "argoproj/argo-cd",
+   "lang": "Go",
+   "stars": 23789,
+   "today": 18,
+   "forks": 7211,
+   "src": "Go 榜",
+   "sum": "Kubernetes 声明式持续交付工具，以 Git 仓库作为唯一事实来源。"
+  },
+  {
+   "s": "infra",
+   "repo": "modelcontextprotocol/go-sdk",
+   "lang": "Go",
+   "stars": 4909,
+   "today": 13,
+   "forks": 388,
+   "src": "Go 榜",
+   "sum": "MCP 官方 Go SDK，与 Google 合作维护，用于编写 MCP 服务端与客户端。"
+  },
+  {
+   "s": "infra",
+   "repo": "dotnet/aspnetcore",
+   "lang": "C#",
+   "stars": 38310,
+   "today": 7,
+   "forks": 10641,
+   "src": "总榜 #8",
+   "sum": "微软跨平台 Web 框架，用于构建现代云原生应用与高性能 API 服务。"
+  },
+  {
+   "s": "learn",
+   "repo": "bojieli/ai-agent-book",
+   "lang": "Python",
+   "stars": 27744,
+   "today": 1232,
+   "forks": 2103,
+   "src": "Python 榜",
+   "sum": "《深入理解 AI Agent》开源仓库，含全书正文、编译版 PDF 与逐章配套代码。"
+  },
+  {
+   "s": "learn",
+   "repo": "virgiliojr94/book-to-skill",
+   "lang": "Python",
+   "stars": 13835,
+   "today": 1224,
+   "forks": 1042,
+   "src": "Python 榜",
+   "sum": "把任意技术书 PDF 转成 Claude Code 技能包，边干活边随手查阅。"
+  },
+  {
+   "s": "learn",
+   "repo": "paperswithbacktest/awesome-systematic-trading",
+   "lang": "Python",
+   "stars": 11203,
+   "today": 621,
+   "forks": 1417,
+   "src": "总榜 #3",
+   "sum": "系统化交易精选清单，汇总量化库、策略、书籍、博客与教程资源。"
+  },
+  {
+   "s": "learn",
+   "repo": "Lordog/dive-into-llms",
+   "lang": "Jupyter Notebook",
+   "stars": 46682,
+   "today": 289,
+   "forks": 4025,
+   "src": "Jupyter 榜",
+   "sum": "《动手学大模型》系列编程实践教程，从原理到代码逐章拆解。"
+  },
+  {
+   "s": "learn",
+   "repo": "microsoft/AI-For-Beginners",
+   "lang": "Jupyter Notebook",
+   "stars": 54326,
+   "today": 155,
+   "forks": 9012,
+   "src": "总榜 #2",
+   "sum": "微软 AI 入门课：12 周 24 课，从基础概念一路走到实践项目。"
+  },
+  {
+   "s": "learn",
+   "repo": "byoungd/up",
+   "lang": "JavaScript",
+   "stars": 56615,
+   "today": 113,
+   "forks": 5233,
+   "src": "JavaScript 榜",
+   "sum": "中文向的人生与英语学习进阶指南，长期维护的高星资源合集。"
+  },
+  {
+   "s": "learn",
+   "repo": "chiphuyen/aie-book",
+   "lang": "Jupyter Notebook",
+   "stars": 16792,
+   "today": 91,
+   "forks": 2141,
+   "src": "Jupyter 榜",
+   "sum": "Chip Huyen《AI Engineering》配套资源库，面向 AI 工程师的实战材料。"
+  },
+  {
+   "s": "learn",
+   "repo": "iluwatar/java-design-patterns",
+   "lang": "Java",
+   "stars": 94440,
+   "today": 75,
+   "forks": 26812,
+   "src": "Java 榜",
+   "sum": "用 Java 实现的经典设计模式大全，每个模式配说明、类图与示例代码。"
+  },
+  {
+   "s": "learn",
+   "repo": "microsoft/generative-ai-for-beginners",
+   "lang": "Jupyter Notebook",
+   "stars": 113765,
+   "today": 61,
+   "forks": 64211,
+   "src": "Jupyter 榜",
+   "sum": "微软生成式 AI 入门课，21 节课带你从零上手构建 GenAI 应用。"
+  },
+  {
+   "s": "learn",
+   "repo": "github/awesome-copilot",
+   "lang": "Python",
+   "stars": 37271,
+   "today": 54,
+   "forks": 4188,
+   "src": "Python 榜",
+   "sum": "GitHub Copilot 社区贡献的指令、Agent、技能与配置合集。"
+  }
+ ]
+}

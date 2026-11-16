@@ -1,0 +1,343 @@
+<!-- elegant-pdf template — warm academic style -->
+<!DOCTYPE html>
+<html lang="{lang}">
+<head>
+<meta charset="UTF-8">
+<title>{title}</title>
+<style>
+/* ===== Reset ===== */
+body {{
+    margin: 0; padding: 0;
+    font-family: "Noto Serif CJK SC", "Source Han Serif SC", "Songti SC", "STSong", serif;
+    font-size: 10.5pt; line-height: 1.75;
+    color: #2c2c2c; text-align: justify; text-align-last: left;
+    string-set: doctitle "{running_title}";
+}}
+
+/* ===== Page ===== */
+@page {{
+    size: A4; margin: 2.2cm 2cm 2.5cm 2cm;
+    @top-center {{
+        content: string(doctitle);
+        font-size: 8.5pt; color: #888; font-family: "Noto Serif CJK SC", "Source Han Serif SC", "Songti SC", serif;
+    }}
+    @bottom-center {{
+        content: counter(page);
+        font-size: 9pt; color: #888;
+    }}
+}}
+
+@page cover {{
+    margin: 0;
+    @top-center {{ content: none; }}
+    @bottom-center {{ content: none; }}
+}}
+
+@page toc {{
+    @top-center {{ content: none; }}
+}}
+
+/* ===== Cover ===== */
+.cover {{
+    page: cover; width: 210mm; height: 297mm; margin: 0;
+    position: relative; overflow: hidden; page-break-after: always;
+    background: linear-gradient(145deg, #faf8f5 0%, #f5f0e8 40%, #ede7db 100%);
+}}
+
+.cover::before {{
+    content: ""; position: absolute; top: -60px; right: -80px;
+    width: 380px; height: 380px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(180, 155, 120, 0.12) 0%, transparent 70%);
+}}
+
+.cover::after {{
+    content: ""; position: absolute; bottom: -100px; left: -60px;
+    width: 450px; height: 450px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(160, 140, 110, 0.08) 0%, transparent 70%);
+}}
+
+.cover-line-top, .cover-line-bottom {{
+    position: absolute; left: 0; right: 0; height: 8px;
+    background: linear-gradient(90deg, #a08e6e 0%, #c4b59a 50%, #a08e6e 100%);
+}}
+.cover-line-top {{ top: 0; }}
+.cover-line-bottom {{ bottom: 0; }}
+
+.cover-accent-left {{
+    position: absolute; left: 45px; top: 120px;
+    width: 3px; height: 200px;
+    background: linear-gradient(180deg, #b8a88a 0%, transparent 100%);
+}}
+
+.cover-accent-right {{
+    position: absolute; right: 55px; bottom: 140px;
+    width: 3px; height: 160px;
+    background: linear-gradient(180deg, transparent 0%, #b8a88a 100%);
+}}
+
+.cover-block-1 {{
+    position: absolute; top: 80px; right: 60px;
+    width: 70px; height: 70px;
+    border: 2px solid rgba(160, 142, 110, 0.25); transform: rotate(15deg);
+}}
+
+.cover-block-2 {{
+    position: absolute; bottom: 200px; left: 50px;
+    width: 50px; height: 50px;
+    background: rgba(160, 142, 110, 0.08); transform: rotate(-10deg);
+}}
+
+.cover-block-3 {{
+    position: absolute; top: 280px; left: 80px;
+    width: 25px; height: 25px;
+    border: 1.5px solid rgba(160, 142, 110, 0.2);
+}}
+
+.cover-content {{
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%); text-align: center; width: 72%; z-index: 1;
+}}
+
+.cover-label {{
+    font-size: 10pt; letter-spacing: 0.35em; color: #a08e6e;
+    text-transform: uppercase; margin-bottom: 2.5cm; font-weight: 400;
+}}
+
+.cover-title {{
+    font-family: "Kaiti SC", "STKaiti", serif;
+    font-size: 32pt; font-weight: 700; color: #3a352f;
+    margin-bottom: 0.6cm; letter-spacing: 0.05em; line-height: 1.3;
+    border: none !important; page-break-before: auto !important;
+}}
+
+.cover-subtitle {{
+    font-size: 13pt; color: #7a7168; font-weight: 400;
+    margin-bottom: 3.5cm; letter-spacing: 0.08em;
+}}
+
+.cover-divider {{
+    width: 60px; height: 1px;
+    background: linear-gradient(90deg, transparent, #b8a88a, transparent);
+    margin: 0 auto 1.5cm auto;
+}}
+
+.cover-meta {{
+    font-size: 9.5pt; color: #9a9088; line-height: 2.2; letter-spacing: 0.05em;
+}}
+
+.cover-meta p {{ margin: 0.2em 0; }}
+
+/* ===== TOC ===== */
+.toc-page {{
+    page: toc; page-break-after: always;
+}}
+
+.toc-title {{
+    font-size: 20pt; font-weight: 700; color: #3a352f;
+    text-align: center; margin-bottom: 1.5cm; margin-top: 0.5cm;
+    letter-spacing: 0.1em;
+}}
+
+.toc-list {{
+    list-style: none; padding: 0; margin: 0;
+}}
+
+.toc-list li {{
+    margin-bottom: 0.5em;
+}}
+
+.toc-list a {{
+    color: #2c2c2c; text-decoration: none; display: block;
+    padding: 0.3em 0; border-bottom: 1px dotted #ddd8d0;
+    font-size: 10.5pt;
+}}
+
+.toc-list a::after {{
+    content: "      " target-counter(attr(href), page);
+    /* leader(".") removed: WeasyPrint renders it as garbled chars */
+    float: right; color: #888;
+}}
+
+.toc-l1 > a {{
+    font-weight: 600; font-size: 11pt; color: #3a352f;
+    border-bottom-color: #c8c0b4; margin-top: 0.6em;
+}}
+
+.toc-l2 {{
+    padding-left: 1.5em; font-size: 10pt;
+}}
+
+/* ===== Headings — Kaiti for elegance ===== */
+h1 {{
+    font-family: "Noto Serif CJK SC", "Source Han Serif SC", "Kaiti SC", "STKaiti", serif;
+    font-size: 20pt; font-weight: 600; color: #3a352f;
+    margin-top: 0; margin-bottom: 0.8cm; padding-bottom: 0.3cm;
+    border-bottom: 2px solid #c4b59a;
+    page-break-before: always; letter-spacing: 0.05em;
+    string-set: doctitle content();
+}}
+
+body.cover-page h1:first-of-type {{
+    page-break-before: auto;
+}}
+
+h2 {{
+    font-family: "Noto Serif CJK SC", "Source Han Serif SC", "Kaiti SC", "STKaiti", serif;
+    font-size: 14pt; font-weight: 700; color: #4a443d;
+    margin-top: 1cm; margin-bottom: 0.4cm; padding-left: 0.5em;
+    border-left: 3px solid #b8a88a; page-break-after: avoid;
+}}
+
+h3 {{
+    font-family: "Noto Serif CJK SC", "Source Han Serif SC", "Songti SC", "STSong", serif;
+    font-size: 11.5pt; font-weight: 600; color: #5a544d;
+    margin-top: 0.7cm; margin-bottom: 0.3cm; page-break-after: avoid;
+}}
+
+h4 {{
+    font-family: "Noto Serif CJK SC", "Source Han Serif SC", "Songti SC", "STSong", serif;
+    font-size: 10.5pt; font-weight: 600; color: #5a544d;
+    margin-top: 0.5cm; margin-bottom: 0.2cm;
+}}
+
+/* ===== Paragraphs ===== */
+p {{
+    margin: 0.4em 0; orphans: 2; widows: 2;
+}}
+
+/* ===== Intro / Quote blocks ===== */
+.intro-block, blockquote {{
+    background: linear-gradient(135deg, #f9f7f4 0%, #f5f2ed 100%);
+    border-left: 3px solid #c4b59a;
+    padding: 1em 1.2em; margin: 0.8cm 0;
+    font-size: 10pt; color: #5a544d; line-height: 1.8;
+}}
+
+blockquote p {{ margin: 0.2em 0; }}
+
+/* ===== Code ===== */
+code {{
+    font-family: "SF Mono", "Menlo", "Courier New", monospace;
+    font-size: 9pt; background: #f3f0eb; padding: 0.15em 0.4em;
+    border-radius: 3px; color: #5a4a3a;
+}}
+
+pre {{
+    background: #f8f6f2; border: 1px solid #e5e0d8;
+    border-radius: 4px; padding: 0.8em 1em; margin: 0.5cm 0;
+    font-size: 9pt; line-height: 1.5; overflow-x: auto;
+    page-break-inside: avoid;
+}}
+
+pre code {{
+    background: none; padding: 0; border-radius: 0;
+}}
+
+/* ===== Tables ===== */
+table {{
+    width: 100%; max-width: 100%; border-collapse: collapse;
+    margin: 0.6cm 0; font-size: 9.5pt; box-sizing: border-box;
+}}
+
+thead {{ display: table-header-group; }}
+
+thead tr {{
+    border-top: 2px solid #5a544d;
+    border-bottom: 1.5px solid #5a544d;
+}}
+
+th {{
+    padding: 0.5em 0.8em; text-align: left;
+    font-weight: 600; color: #3a352f; background: #f9f7f4;
+}}
+
+td {{
+    padding: 0.5em 0.8em; text-align: left; vertical-align: top;
+}}
+
+tbody tr {{ border-bottom: 0.5px solid #e0dcd6; }}
+
+tbody tr:last-child {{ border-bottom: 2px solid #5a544d; }}
+
+tr {{ page-break-inside: avoid; }}
+
+/* ===== Lists ===== */
+ul {{
+    margin: 0.4em 0; padding-left: 2em;
+    list-style-type: none;
+}}
+
+ol {{
+    margin: 0.4em 0; padding-left: 2em;
+    list-style-type: decimal;
+}}
+
+li {{ margin-bottom: 0.25em; }}
+
+/* ===== Emphasis ===== */
+strong {{ font-weight: 600; color: #3a352f; }}
+em {{ font-style: italic; color: #5a544d; }}
+
+/* ===== Horizontal rule ===== */
+hr {{
+    border: none; height: 1px;
+    background: linear-gradient(90deg, transparent, #d0c8bc, transparent);
+    margin: 0.8cm 0;
+}}
+
+/* ===== Links ===== */
+a {{ word-break: break-all; color: #8a7e6e; }}
+
+/* ===== Images ===== */
+img {{ max-width: 100%; height: auto; }}
+
+/* ===== Page break helpers ===== */
+figure, blockquote, table, pre {{
+    page-break-inside: avoid;
+}}
+h1, h2, h3, h4 {{
+    page-break-inside: avoid;
+}}
+
+/* ===== Overflow protection ===== */
+pre, table, figure, img, svg, blockquote {{
+    max-width: 100%; box-sizing: border-box;
+}}
+</style>
+</head>
+<body class="cover-page">
+
+<!-- ===== Cover ===== -->
+<div class="cover">
+    <div class="cover-line-top"></div>
+    <div class="cover-line-bottom"></div>
+    <div class="cover-accent-left"></div>
+    <div class="cover-accent-right"></div>
+    <div class="cover-block-1"></div>
+    <div class="cover-block-2"></div>
+    <div class="cover-block-3"></div>
+    <div class="cover-content">
+        <div class="cover-label">{cover_label}</div>
+        <h1 class="cover-title">{title}</h1>
+        <div class="cover-divider"></div>
+        <p class="cover-subtitle">{subtitle}</p>
+        <div class="cover-meta">
+            <p>{author_line}</p>
+            <p>{date_line}</p>
+        </div>
+    </div>
+</div>
+
+<!-- ===== TOC ===== -->
+<div class="toc-page">
+    <div class="toc-title">目&ensp;录</div>
+    <ul class="toc-list">
+{toc_items}
+    </ul>
+</div>
+
+<!-- ===== Body ===== -->
+{body}
+
+</body>
+</html>

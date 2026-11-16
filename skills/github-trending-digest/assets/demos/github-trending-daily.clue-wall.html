@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GitHub 每日趋势晨报 · 2026-07-31</title>
+<style>
+:root{
+  --cork:#a67c52;
+  --cork-2:#8c6642;
+  --cork-dark:#6b4e32;
+  --paper:#fffdf5;
+  --paper-1:#fff9c4;
+  --paper-2:#e1f5fe;
+  --paper-3:#fbe9e7;
+  --paper-4:#e8f5e9;
+  --paper-5:#fff3e0;
+  --ink:#2d2a26;
+  --ink-2:#5a544d;
+  --ink-3:#8c8479;
+  --accent:#c62828;
+  --accent-soft:#ffcdd2;
+  --string:#c62828;
+  --tape:rgba(255,255,255,.45);
+  --pin:#c62828;
+  --radius:2px;
+  --shadow:2px 3px 8px rgba(0,0,0,.22);
+  --hand:'Kaiti','STKaiti','KaiTi','Kai',cursive;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Consolas,"Liberation Mono",Menlo,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:100px}
+body{
+  background-color:var(--cork);color:var(--ink);
+  font-family:var(--sans);line-height:1.6;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(107,78,50,.25) 0, transparent 45%),
+    radial-gradient(circle at 80% 70%, rgba(107,78,50,.22) 0, transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(255,255,255,.04) 0, transparent 60%),
+    repeating-linear-gradient(45deg, rgba(107,78,50,.08) 0 2px, transparent 2px 6px),
+    repeating-linear-gradient(-45deg, rgba(140,103,66,.1) 0 1px, transparent 1px 5px);
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1200px;margin:0 auto;padding:0 22px}
+
+/* ---------- HEADER BOARD ---------- */
+.hero{
+  position:relative;padding:40px 0 34px;
+}
+.hero-board{
+  background:var(--paper);border:8px solid #5d4037;box-shadow:var(--shadow), inset 0 0 60px rgba(93,64,55,.08);
+  padding:28px 34px 24px;position:relative;transform:rotate(-.4deg);
+}
+.hero-board::before{
+  content:"";position:absolute;inset:-12px;border:2px dashed rgba(93,64,55,.25);pointer-events:none;
+}
+.tape{
+  position:absolute;width:110px;height:28px;background:var(--tape);opacity:.85;
+  box-shadow:0 1px 3px rgba(0,0,0,.1);transform:rotate(-2deg);top:-14px;left:50%;margin-left:-55px;
+}
+.kicker{
+  font-family:var(--hand);font-size:18px;color:var(--accent);margin-bottom:8px;letter-spacing:.04em;
+}
+h1{font-size:clamp(28px,5vw,46px);font-weight:900;line-height:1.15;letter-spacing:-.02em;margin-bottom:14px;color:var(--ink);font-family:var(--hand)}
+h1 em{font-style:normal;color:var(--accent)}
+.hero-meta{display:flex;flex-wrap:wrap;gap:10px 20px;color:var(--ink-2);font-size:14px;margin-bottom:22px;font-family:var(--mono)}
+.hero-meta span{display:inline-flex;align-items:center;gap:6px}
+.hero-meta b{color:var(--ink)}
+.pin{position:absolute;width:14px;height:14px;border-radius:50%;background:var(--pin);box-shadow:0 2px 4px rgba(0,0,0,.3), inset 0 -2px 2px rgba(0,0,0,.2)}
+.pin::after{content:"";position:absolute;top:2px;left:3px;width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.4)}
+.hero-board .pin.t{top:10px;left:50%;margin-left:-7px}
+.hero-board .pin.l{top:50%;left:10px;margin-top:-7px}
+.hero-board .pin.r{top:50%;right:10px;margin-top:-7px}
+
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px}
+.kpi{
+  background:var(--paper-1);border:1px solid rgba(0,0,0,.1);padding:12px 14px;text-align:center;
+  box-shadow:1px 2px 5px rgba(0,0,0,.15);transform:rotate(.5deg);position:relative;
+}
+.kpi:nth-child(2){background:var(--paper-2);transform:rotate(-.6deg)}
+.kpi:nth-child(3){background:var(--paper-3);transform:rotate(.4deg)}
+.kpi:nth-child(4){background:var(--paper-4);transform:rotate(-.3deg)}
+.kpi:nth-child(5){background:var(--paper-5);transform:rotate(.6deg)}
+.kpi .n{font-family:var(--mono);font-size:24px;font-weight:800;color:var(--accent);line-height:1.1}
+.kpi .l{font-size:12px;color:var(--ink-2);margin-top:4px;font-weight:600}
+.kpi .pink{position:absolute;top:-6px;left:50%;margin-left:-5px;width:10px;height:10px;background:var(--pin);border-radius:50%;box-shadow:0 1px 3px rgba(0,0,0,.25)}
+
+.sectionbar{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:22px}
+.sb{
+  display:flex;align-items:center;gap:10px;padding:12px 14px;
+  background:var(--paper);border:1px solid rgba(0,0,0,.12);text-decoration:none;color:var(--ink-2);
+  box-shadow:1px 2px 5px rgba(0,0,0,.15);transition:.18s;position:relative;
+}
+.sb:hover{transform:translateY(-2px) rotate(0deg);box-shadow:2px 4px 8px rgba(0,0,0,.2);color:var(--ink)}
+.sb .sbn{font-family:var(--mono);font-size:22px;font-weight:800;color:var(--accent);min-width:34px}
+.sb .sbl{font-size:13px;font-weight:700;line-height:1.35;color:var(--ink-2)}
+.sb .pin{position:absolute;top:5px;right:8px;width:9px;height:9px}
+
+/* ---------- NAV ---------- */
+nav{position:sticky;top:0;z-index:50;background:rgba(166,124,82,.95);backdrop-filter:blur(10px);border-bottom:1px solid rgba(93,64,55,.3);box-shadow:0 2px 8px rgba(0,0,0,.15)}
+.navin{display:flex;gap:10px;overflow-x:auto;padding:12px 0;scrollbar-width:none}
+.navin::-webkit-scrollbar{display:none}
+.navin a{
+  flex:none;display:inline-flex;align-items:center;gap:7px;
+  padding:7px 14px;border:1px solid rgba(0,0,0,.2);border-radius:2px;
+  background:var(--paper);color:var(--ink-2);text-decoration:none;
+  font-size:13px;font-weight:700;white-space:nowrap;transition:.16s;box-shadow:1px 2px 4px rgba(0,0,0,.12);
+  transform:rotate(-.3deg);
+}
+.navin a:hover{background:var(--paper-1);color:var(--accent);transform:rotate(0deg) translateY(-2px)}
+.navin a .c{font-family:var(--mono);font-size:11px;padding:1px 7px;border-radius:999px;background:var(--paper-1);color:var(--ink-2)}
+.navin a:hover .c{background:var(--accent);color:#fff}
+.navin a .pip{width:8px;height:8px;border-radius:2px}
+
+/* ---------- MAIN ---------- */
+main{padding:36px 0 14px}
+section{margin-bottom:54px;scroll-margin-top:100px;position:relative}
+.zone{
+  background:rgba(255,255,255,.06);border:2px dashed rgba(93,64,55,.35);border-radius:4px;
+  padding:22px 18px 18px;position:relative;backdrop-filter:blur(1px);
+}
+.zone-label{
+  position:absolute;top:-14px;left:24px;background:var(--paper);border:1px solid rgba(0,0,0,.15);
+  padding:6px 16px;box-shadow:1px 2px 5px rgba(0,0,0,.15);font-family:var(--hand);font-size:18px;font-weight:700;color:var(--accent);transform:rotate(-1deg);
+}
+.zone-label .cnt{font-family:var(--mono);font-size:12px;color:var(--ink-3);margin-left:8px;font-weight:700}
+.sdesc{color:var(--ink-2);font-size:14px;margin:0 0 18px 6px;font-family:var(--hand);font-weight:600}
+
+.wall{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:18px;align-items:start;
+}
+
+.note{
+  position:relative;background:var(--paper-1);padding:18px 16px 14px;border-radius:2px;
+  box-shadow:var(--shadow);display:flex;flex-direction:column;gap:10px;transition:.2s;
+}
+.note:nth-child(5n+2){background:var(--paper-2);transform:rotate(-1.2deg)}
+.note:nth-child(5n+3){background:var(--paper-3);transform:rotate(.8deg)}
+.note:nth-child(5n+4){background:var(--paper-4);transform:rotate(-.6deg)}
+.note:nth-child(5n+5){background:var(--paper-5);transform:rotate(1deg)}
+.note:hover{transform:rotate(0deg) scale(1.02);z-index:5;box-shadow:3px 6px 14px rgba(0,0,0,.25)}
+.note::before{
+  content:"";position:absolute;top:-10px;left:50%;margin-left:-40px;width:80px;height:22px;
+  background:var(--tape);opacity:.75;transform:rotate(-1deg);border-radius:1px;
+}
+.note .pin{position:absolute;top:4px;left:50%;margin-left:-5px;width:10px;height:10px}
+
+.ntop{display:flex;align-items:flex-start;gap:10px}
+.num{
+  flex:none;min-width:28px;height:24px;padding:0 7px;border:1px solid rgba(0,0,0,.2);
+  display:grid;place-items:center;font-size:12px;font-weight:800;font-family:var(--mono);letter-spacing:.02em;
+  background:var(--paper);color:var(--accent);border-radius:2px;transform:rotate(-1deg);margin-top:2px;
+}
+.ttl{font-size:15px;font-weight:800;line-height:1.4;letter-spacing:-.01em;word-break:break-word;font-family:var(--sans)}
+.ttl .own{color:var(--ink-3);font-weight:600}
+.ttl a{color:inherit;text-decoration:none}
+.ttl a:hover{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+.hot{position:absolute;top:-8px;right:-6px;font-family:var(--mono);font-size:10px;font-weight:800;letter-spacing:.06em;color:#fff;background:var(--accent);padding:2px 7px;border-radius:2px;transform:rotate(6deg);box-shadow:1px 2px 4px rgba(0,0,0,.2)}
+
+.sum{font-size:13px;color:var(--ink-2);line-height:1.7;flex:1;font-family:var(--sans)}
+
+.chips{display:flex;flex-wrap:wrap;gap:5px;align-items:center}
+.chip{
+  display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:700;
+  padding:2px 7px;border-radius:2px;background:rgba(0,0,0,.06);color:var(--ink-2);white-space:nowrap;
+  border:1px solid rgba(0,0,0,.1);
+}
+.chip .lg{width:7px;height:7px;border-radius:50%;flex:none}
+.chip.star{background:rgba(255,193,7,.12);color:#8a6d0b}
+.chip.up{background:rgba(76,175,80,.12);color:#2e7d32}
+.chip.src{background:rgba(33,150,243,.12);color:#1565c0}
+
+.nbot{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-top:10px;border-top:1px dashed rgba(0,0,0,.15)}
+.go{
+  display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:800;
+  color:var(--accent);text-decoration:none;padding:4px 10px;border-radius:2px;
+  border:1px solid rgba(0,0,0,.15);background:var(--paper);transition:.16s;
+}
+.go:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+.go svg{width:12px;height:12px;fill:currentColor}
+.forks{font-family:var(--mono);font-size:11px;color:var(--ink-3)}
+
+.string{
+  position:absolute;pointer-events:none;z-index:0;opacity:.35;
+  border-top:2px dashed var(--string);transform-origin:left center;
+}
+
+/* ---------- FOOTER ---------- */
+footer{padding:30px 0 44px}
+.footer-board{
+  background:var(--paper);border:6px solid #5d4037;box-shadow:var(--shadow);padding:24px 28px;position:relative;transform:rotate(.3deg);
+}
+.fgrid{display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between;align-items:flex-start}
+.fnote{font-size:13px;color:var(--ink-2);line-height:1.85;max-width:640px}
+.fnote strong{color:var(--ink);font-weight:800}
+.fstat{display:flex;gap:10px;flex-wrap:wrap}
+.fstat div{background:rgba(0,0,0,.05);border:1px solid rgba(0,0,0,.1);border-radius:2px;padding:9px 14px;font-size:12px;color:var(--ink-2)}
+.fstat b{display:block;font-family:var(--mono);font-size:17px;color:var(--accent);font-weight:800}
+.fsrc{margin-top:16px;font-size:12px;color:var(--ink-3)}
+.fsrc a{color:var(--accent);text-decoration:none}
+.fsrc a:hover{text-decoration:underline}
+
+.top{
+  position:fixed;right:20px;bottom:22px;width:42px;height:42px;border-radius:50%;
+  background:var(--paper);border:1px solid rgba(0,0,0,.2);box-shadow:var(--shadow);
+  display:grid;place-items:center;cursor:pointer;opacity:0;pointer-events:none;transition:.22s;z-index:60;
+}
+.top.on{opacity:1;pointer-events:auto}
+.top:hover{background:var(--accent);border-color:var(--accent)}
+.top svg{width:17px;height:17px;fill:var(--ink-2)}
+.top:hover svg{fill:#fff}
+
+@media (max-width:760px){
+  .hero{padding:28px 0}
+  .hero-board{padding:20px 22px 18px}
+  h1{font-size:28px}
+  .wall{grid-template-columns:1fr}
+  .note:nth-child(n){transform:rotate(0deg)}
+  .sdesc{margin-left:0}
+  main{padding:24px 0 10px}
+}
+</style>
+</head>
+<body>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-board">
+      <div class="tape"></div>
+      <div class="pin t"></div><div class="pin l"></div><div class="pin r"></div>
+      <div class="kicker">GitHub Trending · Daily Digest</div>
+      <h1>GitHub <em>每日趋势</em>晨报</h1>
+      <div class="hero-meta">
+        <span><b id="heroDate">—</b></span>
+        <span>整理于 <b id="heroTime">—</b></span>
+        <span>口径：<b>今日新增 Star（daily）</b></span>
+      </div>
+
+      <div class="kpis">
+        <div class="kpi"><div class="pink"></div><div class="n" id="kTotal">0</div><div class="l">今日线索</div></div>
+        <div class="kpi"><div class="pink"></div><div class="n" id="kStars">0</div><div class="l">新增关注</div></div>
+        <div class="kpi"><div class="pink"></div><div class="n" id="kTop">—</div><div class="l">最热线索</div></div>
+        <div class="kpi"><div class="pink"></div><div class="n" id="kLang">0</div><div class="l">涉及语言</div></div>
+        <div class="kpi"><div class="pink"></div><div class="n">5</div><div class="l">主题墙</div></div>
+      </div>
+    </div>
+
+    <div class="sectionbar" id="sectionBar"></div>
+  </div>
+</header>
+
+<nav><div class="wrap"><div class="navin" id="nav"></div></div></nav>
+
+<main class="wrap" id="main"></main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-board">
+      <div class="fgrid">
+        <div class="fnote">
+          本期共收录 <strong id="fTotal">0</strong> 个条目，按 <strong>模型与多模态 / Agent 与 AI 应用 / 开发工具与效率 / 框架与基础设施 / 学习资源与精选清单</strong> 五个固定版块分组，序号全局连续编号。<br>条目取自 GitHub Trending 今日榜（总榜 + 8 个语言分榜），去重后按今日新增 Star 排序择优筛选。摘要为中文重写，不超过 60 字。
+        </div>
+        <div class="fstat">
+          <div><b id="fRepos">0</b>线索数</div>
+          <div><b id="fStars">0</b>新增关注</div>
+          <div><b id="fLangs">0</b>语言</div>
+        </div>
+      </div>
+      <div class="fsrc">
+        数据来源：<a href="https://github.com/trending?since=daily" target="_blank" rel="noopener noreferrer">github.com/trending（daily）</a>
+        　·　生成时间：<span id="fTime">—</span>　·　全部时间均为北京时间（UTC+8）
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="top" id="toTop" title="回到顶部"><svg viewBox="0 0 16 16"><path d="M8 3.5 2.5 9l1.06 1.06L8 5.62l4.44 4.44L13.5 9 8 3.5Z"/></svg></div>
+
+<script>
+const CAPTURED_AT = "2026-07-31T13:16:29+08:00";
+
+const SECTIONS = [{"id": "models","name": "模型与多模态","icon": "01","color": "var(--s1)","bg": "var(--s1b)","desc": "语音、视觉、3D 与生成式模型的开源实现与推理工程。"},{"id": "agents","name": "Agent 与 AI 应用","icon": "02","color": "var(--s2)","bg": "var(--s2b)","desc": "编码 Agent、技能包、沙箱与治理工具，今日最热的一条主线。"},{"id": "tools","name": "开发工具与效率","icon": "03","color": "var(--s3)","bg": "var(--s3b)","desc": "编辑器、终端工具、桌面效率软件与调试链路。"},{"id": "infra","name": "框架与基础设施","icon": "04","color": "var(--s4)","bg": "var(--s4b)","desc": "语言运行时、后端框架、CI/CD、可观测性与自托管服务。"},{"id": "learn","name": "学习资源与精选清单","icon": "05","color": "var(--s5)","bg": "var(--s5b)","desc": "教程、开源书籍与 awesome 清单，适合囤起来慢慢啃。"}];
+
+const LANG_COLOR = {
+  "Python":"#3572A5","TypeScript":"#3178c6","JavaScript":"#f1e05a","Rust":"#dea584","Go":"#00ADD8",
+  "Java":"#b07219","C++":"#f34b7d","C":"#555555","C#":"#178600","Jupyter Notebook":"#DA5B0B","Other":"#8b949e"
+};
+const DATA = [{"s": "models","repo": "huggingface/speech-to-speech","lang": "Python","stars": 9169,"today": 628,"forks": 1657,"src": "总榜 #1","sum": "用开源模型搭建可本地运行的语音对话 Agent，串起识别、大模型与合成完整链路。"},{"s": "models","repo": "deepfakes/faceswap","lang": "Python","stars": 56726,"today": 619,"forks": 13598,"src": "Python 榜","sum": "老牌开源换脸工具链，覆盖素材处理、模型训练到视频合成的全流程。"},{"s": "models","repo": "microsoft/VibeVoice","lang": "Python","stars": 51629,"today": 484,"forks": 6221,"src": "Python 榜","sum": "微软开源的前沿语音 AI 模型，面向长文本、多说话人的高质量语音生成。"},{"s": "models","repo": "microsoft/TRELLIS.2","lang": "Python","stars": 9651,"today": 439,"forks": 712,"src": "Python 榜","sum": "微软 3D 生成模型第二代，用紧凑的结构化隐变量直接生成三维资产。"},{"s": "models","repo": "harry0703/MoneyPrinterTurbo","lang": "Python","stars": 100699,"today": 403,"forks": 14106,"src": "Python 榜","sum": "给一个主题或关键词，AI 自动化工作流一键产出配音配字幕的高清短视频。"},{"s": "models","repo": "PaddlePaddle/PaddleOCR","lang": "Python","stars": 86613,"today": 93,"forks": 8404,"src": "Python 榜","sum": "轻量 OCR 工具箱，把 PDF 与图片文档解析成可直接喂给大模型的结构化数据。"},{"s": "models","repo": "lllyasviel/Fooocus","lang": "Python","stars": 51666,"today": 63,"forks": 7266,"src": "Python 榜","sum": "极简文生图界面，把复杂参数全部藏起来，让你只专注于写好提示词。"},{"s": "models","repo": "vllm-project/vllm-ascend","lang": "C++","stars": 2532,"today": 10,"forks": 566,"src": "C++ 榜","sum": "vLLM 的昇腾 NPU 硬件插件，由社区维护，让国产算力跑通高吞吐推理。"},{"s": "agents","repo": "different-ai/openwork","lang": "TypeScript","stars": 18891,"today": 915,"forks": 1421,"src": "总榜 #4","sum": "Claude Cowork 的开源替代品，基于 opencode 打造的协作式 AI 工作台。"},{"s": "agents","repo": "1jehuang/jcode","lang": "Rust","stars": 14270,"today": 812,"forks": 986,"src": "Rust 榜","sum": "自称最省内存的编码 Agent 运行壳，用 Rust 重写以压低常驻资源占用。"},{"s": "agents","repo": "affaan-m/ECC","lang": "JavaScript","stars": 236323,"today": 804,"forks": 18402,"src": "总榜 #14","sum": "Agent 运行壳性能优化系统，整合技能、直觉、记忆、安全与研究优先开发流。"},{"s": "agents","repo": "Panniantong/Agent-Reach","lang": "Python","stars": 63035,"today": 543,"forks": 4870,"src": "Python 榜","sum": "给 AI Agent 装上眼睛，可读取搜索推特、Reddit、油管、GitHub 与小红书。"},{"s": "agents","repo": "mvanhorn/last30days-skill","lang": "Python","stars": 55666,"today": 378,"forks": 4123,"src": "总榜 #7","sum": "Agent 技能包：跨 Reddit、X、油管、HN 检索近 30 天信息并综合成报告。"},{"s": "agents","repo": "JuliusBrussee/caveman","lang": "JavaScript","stars": 94698,"today": 368,"forks": 7811,"src": "JavaScript 榜","sum": "让 Claude Code 用「原始人语」说话的技能，官方宣称可砍掉 65% token。"},{"s": "agents","repo": "openai/codex","lang": "Rust","stars": 102700,"today": 245,"forks": 14721,"src": "Rust 榜","sum": "OpenAI 官方轻量编码 Agent，直接跑在终端里，不必切回网页端操作。"},{"s": "agents","repo": "tinyhumansai/openhuman","lang": "Rust","stars": 35719,"today": 67,"forks": 2688,"src": "Rust 榜","sum": "个人 AI 超级智能：本地优先沉淀你的人生记忆，并统一编排各类工具。"},{"s": "agents","repo": "microsoft/agent-governance-toolkit","lang": "Python","stars": 5509,"today": 62,"forks": 499,"src": "Python 榜","sum": "微软 Agent 治理工具包：策略强制、零信任身份、执行沙箱与可靠性工程。"},{"s": "agents","repo": "nolabs-ai/nono","lang": "Rust","stars": 3364,"today": 52,"forks": 241,"src": "Rust 榜","sum": "几秒钟给任意 AI Agent 套上沙箱，零配置、零额外延迟。"},{"s": "agents","repo": "kenn-io/agentsview","lang": "Go","stars": 4642,"today": 17,"forks": 318,"src": "Go 榜","sum": "本地优先的编码 Agent 会话检索与分析面板，可统计 token 消耗与使用洞察。"},{"s": "tools","repo": "opengeos/GeoLibre","lang": "TypeScript","stars": 4555,"today": 640,"forks": 392,"src": "TypeScript 榜","sum": "轻量云原生 GIS 平台，直接在浏览器里完成地理空间数据的可视化与分析。"},{"s": "tools","repo": "pascalorg/editor","lang": "TypeScript","stars": 20206,"today": 625,"forks": 1533,"src": "总榜 #6","sum": "在浏览器里创建并分享 3D 建筑设计项目的协作式编辑器。"},{"s": "tools","repo": "agavra/tuicr","lang": "Rust","stars": 1910,"today": 190,"forks": 132,"src": "总榜 #13","sum": "带 vim 键位的终端代码评审工具，把 Code Review 整个搬进 TUI。"},{"s": "tools","repo": "geo-tp/ESP32-Bit-Pirate","lang": "C++","stars": 4652,"today": 152,"forks": 331,"src": "C++ 榜","sum": "基于 ESP32 的硬件破解工具，配网页 CLI，几乎能说所有常见总线协议。"},{"s": "tools","repo": "JOYCEQL/magic-resume","lang": "TypeScript","stars": 9309,"today": 119,"forks": 1215,"src": "TypeScript 榜","sum": "免费在线 AI 简历编辑器，支持实时预览、多模板排版与一键导出。"},{"s": "tools","repo": "rustdesk/rustdesk","lang": "Rust","stars": 119277,"today": 83,"forks": 16072,"src": "Rust 榜","sum": "开源远程桌面，可完全自托管，是 TeamViewer 的高人气替代方案。"},{"s": "tools","repo": "ChromeDevTools/chrome-devtools-mcp","lang": "TypeScript","stars": 48139,"today": 80,"forks": 3312,"src": "总榜 #11","sum": "官方 MCP 服务，把 Chrome 开发者工具的调试能力开放给编码 Agent。"},{"s": "tools","repo": "microsoft/PowerToys","lang": "C","stars": 137201,"today": 70,"forks": 8368,"src": "总榜 #9","sum": "微软 Windows 效率工具合集，窗口管理、批量改名、取色等一应俱全。"},{"s": "tools","repo": "zed-industries/zed","lang": "Rust","stars": 87790,"today": 68,"forks": 7106,"src": "Rust 榜","sum": "Atom 与 Tree-sitter 原班人马打造的高性能多人协作代码编辑器。"},{"s": "tools","repo": "astral-sh/uv","lang": "Rust","stars": 88147,"today": 53,"forks": 2871,"src": "Rust 榜","sum": "Rust 写的极速 Python 包与项目管理器，可一并替代 pip 与 virtualenv。"},{"s": "tools","repo": "larksuite/cli","lang": "Go","stars": 16011,"today": 40,"forks": 904,"src": "Go 榜","sum": "飞书官方命令行工具，同时面向人类与 AI Agent 设计，覆盖多类开放能力。"},{"s": "tools","repo": "getarcaneapp/arcane","lang": "Go","stars": 6792,"today": 35,"forks": 412,"src": "Go 榜","sum": "现代化 Docker 管理面板，把容器运维做得人人都能上手。"},{"s": "infra","repo": "dani-garcia/vaultwarden","lang": "Rust","stars": 64643,"today": 73,"forks": 3562,"src": "Rust 榜","sum": "Rust 实现的轻量 Bitwarden 兼容服务端，适合个人自托管密码库。"},{"s": "infra","repo": "clockworklabs/SpacetimeDB","lang": "Rust","stars": 24940,"today": 62,"forks": 613,"src": "Rust 榜","sum": "把数据库与服务端逻辑合二为一的实时数据库，主打多人在线应用。"},{"s": "infra","repo": "directus/directus","lang": "TypeScript","stars": 36940,"today": 61,"forks": 5482,"src": "TypeScript 榜","sum": "灵活的后端平台，把任意数据库变成无头 CMS、后台面板或自定义应用。"},{"s": "infra","repo": "golang/go","lang": "Go","stars": 135434,"today": 35,"forks": 18521,"src": "Go 榜","sum": "Go 语言主仓库，编译器、运行时与标准库的上游源码都在这里。"},{"s": "infra","repo": "netdata/netdata","lang": "Go","stars": 79947,"today": 31,"forks": 6134,"src": "Go 榜","sum": "开箱即用的全栈可观测性平台，秒级采集指标并自动生成仪表盘。"},{"s": "infra","repo": "ansible/ansible","lang": "Python","stars": 69933,"today": 29,"forks": 24202,"src": "总榜 #10","sum": "无 Agent 的 IT 自动化平台，用 YAML 描述部署、配置与编排流程。"},{"s": "infra","repo": "certimate-go/certimate","lang": "Go","stars": 8988,"today": 27,"forks": 842,"src": "Go 榜","sum": "开源自托管 SSL 证书工具，自动完成申请、部署与续期的全周期管理。"},{"s": "infra","repo": "jenkinsci/jenkins","lang": "Java","stars": 26329,"today": 25,"forks": 9364,"src": "总榜 #12","sum": "老牌自动化服务器，插件生态庞大，至今仍是自建 CI 的主力选择。"},{"s": "infra","repo": "WhiskeySockets/Baileys","lang": "JavaScript","stars": 10475,"today": 19,"forks": 4211,"src": "总榜 #5","sum": "基于 WebSocket 的 WhatsApp Web TS API，无需浏览器即可收发消息。"},{"s": "infra","repo": "argoproj/argo-cd","lang": "Go","stars": 23789,"today": 18,"forks": 7211,"src": "Go 榜","sum": "Kubernetes 声明式持续交付工具，以 Git 仓库作为唯一事实来源。"},{"s": "infra","repo": "modelcontextprotocol/go-sdk","lang": "Go","stars": 4909,"today": 13,"forks": 388,"src": "Go 榜","sum": "MCP 官方 Go SDK，与 Google 合作维护，用于编写 MCP 服务端与客户端。"},{"s": "infra","repo": "dotnet/aspnetcore","lang": "C#","stars": 38310,"today": 7,"forks": 10641,"src": "总榜 #8","sum": "微软跨平台 Web 框架，用于构建现代云原生应用与高性能 API 服务。"},{"s": "learn","repo": "bojieli/ai-agent-book","lang": "Python","stars": 27744,"today": 1232,"forks": 2103,"src": "Python 榜","sum": "《深入理解 AI Agent》开源仓库，含全书正文、编译版 PDF 与逐章配套代码。"},{"s": "learn","repo": "virgiliojr94/book-to-skill","lang": "Python","stars": 13835,"today": 1224,"forks": 1042,"src": "Python 榜","sum": "把任意技术书 PDF 转成 Claude Code 技能包，边干活边随手查阅。"},{"s": "learn","repo": "paperswithbacktest/awesome-systematic-trading","lang": "Python","stars": 11203,"today": 621,"forks": 1417,"src": "总榜 #3","sum": "系统化交易精选清单，汇总量化库、策略、书籍、博客与教程资源。"},{"s": "learn","repo": "Lordog/dive-into-llms","lang": "Jupyter Notebook","stars": 46682,"today": 289,"forks": 4025,"src": "Jupyter 榜","sum": "《动手学大模型》系列编程实践教程，从原理到代码逐章拆解。"},{"s": "learn","repo": "microsoft/AI-For-Beginners","lang": "Jupyter Notebook","stars": 54326,"today": 155,"forks": 9012,"src": "总榜 #2","sum": "微软 AI 入门课：12 周 24 课，从基础概念一路走到实践项目。"},{"s": "learn","repo": "byoungd/up","lang": "JavaScript","stars": 56615,"today": 113,"forks": 5233,"src": "JavaScript 榜","sum": "中文向的人生与英语学习进阶指南，长期维护的高星资源合集。"},{"s": "learn","repo": "chiphuyen/aie-book","lang": "Jupyter Notebook","stars": 16792,"today": 91,"forks": 2141,"src": "Jupyter 榜","sum": "Chip Huyen《AI Engineering》配套资源库，面向 AI 工程师的实战材料。"},{"s": "learn","repo": "iluwatar/java-design-patterns","lang": "Java","stars": 94440,"today": 75,"forks": 26812,"src": "Java 榜","sum": "用 Java 实现的经典设计模式大全，每个模式配说明、类图与示例代码。"},{"s": "learn","repo": "microsoft/generative-ai-for-beginners","lang": "Jupyter Notebook","stars": 113765,"today": 61,"forks": 64211,"src": "Jupyter 榜","sum": "微软生成式 AI 入门课，21 节课带你从零上手构建 GenAI 应用。"},{"s": "learn","repo": "github/awesome-copilot","lang": "Python","stars": 37271,"today": 54,"forks": 4188,"src": "Python 榜","sum": "GitHub Copilot 社区贡献的指令、Agent、技能与配置合集。"}];
+
+/* ---------- 时间：ISO -> 北京时间人话 ---------- */
+const WD = ["星期日","星期一","星期二","星期三","星期四","星期五","星期六"];
+function bj(iso){
+  const t = new Date(iso);
+  const p = new Intl.DateTimeFormat("zh-CN",{timeZone:"Asia/Shanghai",year:"numeric",month:"numeric",
+    day:"numeric",hour:"2-digit",minute:"2-digit",hour12:false,weekday:"short"}).formatToParts(t);
+  const g = k => (p.find(x=>x.type===k)||{}).value || "";
+  const wd = WD[new Date(t.toLocaleString("en-US",{timeZone:"Asia/Shanghai"})).getDay()];
+  const h = parseInt(g("hour"),10);
+  const period = h<5?"凌晨":h<9?"清晨":h<12?"上午":h<14?"中午":h<18?"下午":h<23?"晚上":"深夜";
+  return {
+    date:`${g("year")} 年 ${g("month")} 月 ${g("day")} 日 · ${wd}`,
+    time:`${period} ${h}:${g("minute")}`,
+    full:`${g("year")} 年 ${g("month")} 月 ${g("day")} 日 ${wd} ${period} ${h}:${g("minute")}（北京时间）`
+  };
+}
+const fmt = n => n.toLocaleString("en-US");
+const esc = s => String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+/* ---------- 分组 + 全局连续编号 ---------- */
+const groups = SECTIONS.map(sec=>({
+  ...sec,
+  items: DATA.filter(d=>d.s===sec.id).sort((a,b)=>b.today-a.today)
+}));
+let seq = 0;
+groups.forEach(g=>g.items.forEach(it=>{ it.no = ++seq; }));
+
+const TOTAL   = seq;
+const SUMSTAR = DATA.reduce((a,b)=>a+b.today,0);
+const LANGS   = [...new Set(DATA.map(d=>d.lang))];
+const TOP     = [...DATA].sort((a,b)=>b.today-a.today)[0];
+
+/* ---------- Hero ---------- */
+const T = bj(CAPTURED_AT);
+document.getElementById("heroDate").textContent = T.date;
+document.getElementById("heroTime").textContent = T.time;
+document.getElementById("kTotal").textContent = TOTAL;
+document.getElementById("kStars").textContent = "+" + fmt(SUMSTAR);
+document.getElementById("kTop").textContent   = "+" + fmt(TOP.today);
+document.getElementById("kLang").textContent  = LANGS.length;
+
+document.getElementById("sectionBar").innerHTML = groups.map(g=>`
+  <a class="sb" href="#${g.id}">
+    <span class="sbn">${g.items.length}</span>
+    <span class="sbl">${g.name}</span>
+    <span class="pin"></span>
+  </a>`).join("");
+
+/* ---------- 锚点导航 ---------- */
+document.getElementById("nav").innerHTML =
+  `<a href="#top"><span class="pip" style="background:var(--accent)"></span>总览</a>` +
+  groups.map(g=>`<a href="#${g.id}"><span class="pip" style="background:${g.color}"></span>${g.name}<span class="c">${g.items.length}</span></a>`).join("");
+
+/* ---------- 正文卡片 ---------- */
+document.getElementById("main").innerHTML = groups.map(g=>`
+  <section id="${g.id}">
+    <div class="zone">
+      <div class="zone-label">${g.name}<span class="cnt">${g.items.length}</span></div>
+      <p class="sdesc">${g.desc}</p>
+      <div class="wall">
+        ${g.items.map(it=>{
+          const owner = it.repo.split("/")[0], name = it.repo.split("/")[1];
+          const lc = LANG_COLOR[it.lang] || LANG_COLOR.Other;
+          const hot = it.today >= 400;
+          return `
+          <article class="note">
+            <span class="pin"></span>
+            ${hot?'<span class="hot">HOT</span>':''}
+            <div class="ntop">
+              <span class="num">${String(it.no).padStart(2,"0")}</span>
+              <h3 class="ttl"><a href="https://github.com/${it.repo}" target="_blank" rel="noopener noreferrer"><span class="own">${esc(owner)} /</span> ${esc(name)}</a></h3>
+            </div>
+            <p class="sum">${esc(it.sum)}</p>
+            <div class="chips">
+              <span class="chip"><i class="lg" style="background:${lc}"></i>${esc(it.lang)}</span>
+              <span class="chip src">${esc(it.src)}</span>
+              <span class="chip star">★ ${fmt(it.stars)}</span>
+              <span class="chip up">今日 +${fmt(it.today)}</span>
+            </div>
+            <div class="nbot">
+              <span class="forks">Fork ${fmt(it.forks)}</span>
+              <a class="go" href="https://github.com/${it.repo}" target="_blank" rel="noopener noreferrer">
+                查看<svg viewBox="0 0 16 16"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.5-1h4a.75.75 0 0 1 .75.75v4a.75.75 0 0 1-1.5 0V3.56L8.28 8.78a.75.75 0 0 1-1.06-1.06L12.44 2.5h-2.19a.75.75 0 0 1 0-1.5Z"/></svg>
+              </a>
+            </div>
+          </article>`;
+        }).join("")}
+      </div>
+    </div>
+  </section>`).join("");
+
+/* ---------- 页脚 ---------- */
+document.getElementById("fTotal").textContent = TOTAL;
+document.getElementById("fRepos").textContent = TOTAL;
+document.getElementById("fStars").textContent = "+" + fmt(SUMSTAR);
+document.getElementById("fLangs").textContent = LANGS.length;
+document.getElementById("fTime").textContent  = T.full;
+document.title = `GitHub 每日趋势晨报 · ${T.date.split(" · ")[0]}`;
+
+/* ---------- 回到顶部 ---------- */
+const btnTop = document.getElementById("toTop");
+btnTop.addEventListener("click", ()=>window.scrollTo({top:0,behavior:"smooth"}));
+addEventListener("scroll", ()=>btnTop.classList.toggle("on", scrollY>500), {passive:true});
+</script>
+</body>
+</html>

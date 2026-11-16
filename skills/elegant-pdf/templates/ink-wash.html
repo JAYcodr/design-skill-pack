@@ -1,0 +1,472 @@
+<!-- elegant-pdf template — ink wash style -->
+<!DOCTYPE html>
+<html lang="{lang}">
+<head>
+<meta charset="UTF-8">
+<title>{title}</title>
+<style>
+/* ===== Reset / Body ===== */
+body {{
+    margin: 0; padding: 0;
+    font-family: "Noto Serif CJK SC", "Source Han Serif SC", "Songti SC", "STSong", serif;
+    font-size: 11pt; line-height: 2;
+    color: #2c2c2c; text-align: justify; text-align-last: left;
+    string-set: doctitle "{running_title}";
+    background: #f8f6f0;
+}}
+
+/* ===== @page ===== */
+/* Per ink-wash DNA "多层 radial-gradient 晕染": 每页叠加多层微妙
+   水墨晕染底纹，营造整合纸的宣纸气质，不影响可读性。 */
+@page {{
+    size: A4; margin: 3.5cm 3cm 3cm 3cm;
+    background:
+        radial-gradient(ellipse 800px 520px at 92% 96%,
+            rgba(80,60,40,0.05) 0%, rgba(80,60,40,0.02) 32%, transparent 70%),
+        radial-gradient(ellipse 620px 400px at 6% 6%,
+            rgba(60,50,35,0.045) 0%, transparent 60%),
+        radial-gradient(ellipse 700px 360px at 50% 100%,
+            rgba(40,30,20,0.05) 0%, transparent 60%),
+        radial-gradient(ellipse 520px 240px at 88% 28%,
+            rgba(60,50,35,0.03) 0%, transparent 65%),
+        radial-gradient(ellipse 580px 320px at 12% 68%,
+            rgba(50,40,28,0.035) 0%, transparent 65%),
+        radial-gradient(ellipse 460px 280px at 70% 12%,
+            rgba(60,50,35,0.03) 0%, transparent 60%),
+        #f8f6f0;
+    @top-center {{
+        content: string(doctitle);
+        font-size: 8pt; color: #bbb5a0; letter-spacing: 0.3em;
+    }}
+    @bottom-center {{
+        content: counter(page);
+        font-size: 9pt; color: #bbb5a0;
+    }}
+}}
+
+@page cover {{
+    margin: 0;
+    @top-center {{ content: none; }}
+    @bottom-center {{ content: none; }}
+}}
+
+@page toc {{
+    @top-center {{ content: none; }}
+}}
+
+/* ===== Cover — 水墨 ===== */
+.cover {{
+    /* Per ink-wash DNA "多层 radial-gradient 晕染": 在 .cover 背景叠加
+       多层清水墨晕染。同时补偿 blur() 被去除后的柔化效果。 */
+    page: cover; width: 210mm; height: 297mm; margin: 0;
+    position: relative; overflow: hidden; page-break-after: always;
+    background:
+        radial-gradient(ellipse 600px 420px at 72% 88%,
+            rgba(80,60,40,0.08) 0%, rgba(80,60,40,0.02) 50%, transparent 72%),
+        radial-gradient(ellipse 520px 320px at 24% 62%,
+            rgba(60,50,35,0.07) 0%, rgba(60,50,35,0.02) 45%, transparent 65%),
+        radial-gradient(ellipse 700px 500px at 45% 96%,
+            rgba(40,30,20,0.05) 0%, transparent 65%),
+        #f0ece0;
+}}
+
+/* Ink wash radial gradients — filter: blur() removed (WeasyPrint 节理差),
+   改用更柔和的多层 radial-gradient 透明度替代 */
+.cover::before {{
+    content: ""; position: absolute; top: -50px; right: -30px;
+    width: 350px; height: 350px; border-radius: 50%;
+    background: radial-gradient(circle,
+        rgba(80,60,40,0.13) 0%, rgba(80,60,40,0.05) 40%, transparent 70%);
+}}
+
+.cover::after {{
+    content: ""; position: absolute; bottom: -30px; left: -50px;
+    width: 400px; height: 280px; border-radius: 50%;
+    background: radial-gradient(ellipse,
+        rgba(60,50,35,0.10) 0%, rgba(60,50,35,0.03) 50%, transparent 70%);
+}}
+
+/* 墨点 — three ink marks, varying opacity */
+.ink-dot-1 {{
+    position: absolute; top: 50px; right: 80px;
+    width: 8px; height: 8px;
+    background: rgba(40,30,20,0.22); border-radius: 50%;
+}}
+.ink-dot-2 {{
+    position: absolute; top: 65px; right: 100px;
+    width: 4px; height: 4px;
+    background: rgba(40,30,20,0.13); border-radius: 50%;
+}}
+.ink-dot-3 {{
+    position: absolute; bottom: 100px; left: 60px;
+    width: 6px; height: 6px;
+    background: rgba(40,30,20,0.16); border-radius: 50%;
+}}
+
+/* 竖线 — 仿书法竖格，渐变透明，无文字不受 WeasyPrint 影响 */
+.ink-line {{
+    position: absolute; top: 120px; bottom: 120px; left: 60px;
+    width: 0.5px;
+    background: linear-gradient(180deg,
+        transparent, rgba(139,115,85,0.15) 20%,
+        rgba(139,115,85,0.15) 80%, transparent);
+}}
+
+.cover-content {{
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%); text-align: center;
+    width: 70%; z-index: 1;
+}}
+
+/* 印章 stamp — 鉴赏红色方印, no flex (WeasyPrint), center via line-height */
+.cover-seal {{
+    display: inline-block;
+    width: 50px; height: 50px;
+    border: 2px solid rgba(160,50,50,0.55);
+    margin-bottom: 1.5cm;
+    font-family: "Noto Serif CJK SC", "Source Han Serif SC", "Songti SC", "STSong", serif;
+    font-size: 11pt; color: rgba(160,50,50,0.65);
+    line-height: 50px; text-align: center; letter-spacing: 0;
+}}
+
+.cover-title {{
+    font-size: 28pt; font-weight: 700; color: #1a1a1a;
+    margin: 0 0 0.8cm 0; padding: 0;
+    letter-spacing: 0.15em; line-height: 1.6;
+    border: none !important; page-break-before: auto !important;
+}}
+
+.cover-divider {{
+    width: 60px; height: 0.5px;
+    background: rgba(100,80,60,0.3);
+    margin: 0 auto 0.8cm auto;
+}}
+
+.cover-subtitle {{
+    font-size: 10pt; color: #8a7d6b;
+    letter-spacing: 0.3em; margin: 0 0 2.5cm 0;
+}}
+
+.cover-meta {{
+    font-size: 9pt; color: #999;
+    line-height: 2.2; letter-spacing: 0.05em;
+}}
+
+.cover-meta p {{
+    margin: 0.2em 0;
+}}
+
+/* ===== TOC — 目次 ===== */
+.toc-page {{
+    page: toc; page-break-after: always; padding-top: 2cm;
+}}
+
+.toc-title {{
+    font-size: 14pt; font-weight: 700; color: #2c2c2c;
+    text-align: center; margin-bottom: 1.5cm; letter-spacing: 0.5em;
+}}
+
+.toc-list {{
+    list-style: none; padding: 0; margin: 0 auto;
+    max-width: 75%;
+}}
+
+.toc-list li {{
+    margin: 0;
+}}
+
+.toc-list a {{
+    color: #2c2c2c; text-decoration: none; display: block;
+    padding: 0.5em 0; border-bottom: 0.5px solid #ddd8cc;
+    font-size: 11pt;
+}}
+
+.toc-list a::after {{
+    content: "      " target-counter(attr(href), page);
+    /* leader(".") removed: WeasyPrint renders it as garbled chars */
+    float: right; color: #bbb5a0; font-size: 9pt;
+}}
+
+.toc-l1 > a {{
+    font-weight: 600; font-size: 11.5pt; margin-top: 0.5em;
+}}
+
+.toc-l2 {{
+    padding-left: 2em; font-size: 10pt; color: #666;
+}}
+
+/* ===== Headings ===== */
+/* H1 — 水墨 section, 重横线收尾 */
+h1 {{
+    font-size: 20pt; font-weight: 700; color: #1a1a1a;
+    margin-top: 0; margin-bottom: 0.8cm; padding-bottom: 0.3cm;
+    border-bottom: 0.5px solid #bbb5a0;
+    page-break-before: always; letter-spacing: 0.15em;
+    string-set: doctitle content();
+}}
+
+body.cover-page h1:first-of-type {{
+    page-break-before: auto;
+}}
+
+/* H2 — 赭石圆点前缀，顶部大留白（DNA: 留白大） */
+h2 {{
+    font-size: 14pt; font-weight: 600; color: #3a3a3a;
+    margin-top: 1.5cm; margin-bottom: 0.4cm;
+    page-break-after: avoid;
+    position: relative; padding-left: 0.8em;
+}}
+
+h2::before {{
+    content: ""; position: absolute; left: 0; top: 0.35em;
+    width: 4px; height: 4px;
+    background: #8b5a2b; border-radius: 50%;
+}}
+
+/* H3 — 短横线前缀 */
+h3 {{
+    font-size: 11.5pt; font-weight: 600; color: #4a4a4a;
+    margin-top: 0.6cm; margin-bottom: 0.3cm;
+    page-break-after: avoid;
+    padding-left: 1em; position: relative;
+}}
+
+h3::before {{
+    content: ""; position: absolute; left: 0; top: 0.55em;
+    width: 20px; height: 0.5px;
+    background: #bbb5a0;
+}}
+
+h4 {{
+    font-size: 10.5pt; font-weight: 600; color: #4a4a4a;
+    margin-top: 0.5cm; margin-bottom: 0.2cm;
+    page-break-after: avoid;
+}}
+
+/* ===== Paragraphs — 行距 2，水面留白 ===== */
+p {{
+    margin: 0.5em 0; orphans: 2; widows: 2;
+}}
+
+/* ===== Intro block — 赭石细线 ===== */
+.intro-block {{
+    padding: 0.8em 1em; margin: 0.6cm 0;
+    font-size: 10.5pt; color: #4a4a4a; line-height: 1.8;
+    border-left: 2px solid #8b5a2b;
+    background: rgba(139,90,43,0.04);
+    page-break-inside: avoid;
+}}
+
+/* ===== Quote box — 暖意卡 ===== */
+.quote-box {{
+    padding: 1em 1.2em; margin: 0.6cm 0;
+    font-size: 11pt; color: #4a4a4a; font-style: italic;
+    line-height: 1.8;
+    background: #f4f0e6;
+    page-break-inside: avoid;
+}}
+
+/* ===== Blockquote ===== */
+blockquote {{
+    padding: 0.8em 1em; margin: 0.6cm 0;
+    font-size: 10.5pt; color: #4a4a4a; line-height: 1.8;
+    border-left: 2px solid #8b5a2b;
+    background: rgba(139,90,43,0.04);
+    page-break-inside: avoid;
+}}
+
+blockquote p {{
+    margin: 0.2em 0;
+}}
+
+/* ===== Memo — 关键边界 ===== */
+.memo-section {{
+    padding: 0.6em 0.8em; margin: 0.5cm 0;
+    font-size: 9.5pt; color: #666; line-height: 1.8;
+    border: 0.5px solid #ddd8cc;
+    background: #f8f6f0;
+    page-break-inside: avoid;
+}}
+
+.memo-title {{
+    font-weight: 600; color: #8b5a2b;
+    margin-bottom: 0.2em; font-size: 9pt; letter-spacing: 0.15em;
+}}
+
+/* ===== Section note — 浅边导言 ===== */
+.section-note {{
+    font-size: 9pt; color: #999; line-height: 1.8;
+    padding: 0.4em 0.8em; margin: 0.4cm 0;
+    border-left: 2px solid #ddd8cc;
+}}
+
+/* ===== Theorem — 赭石边线 + 印章红 "印" 小标签 ===== */
+/* Per DNA 留白大: 每定理独立成页，让"印" bekommt ceremonial 之留白. */
+.theorem {{
+    border-left: 3px solid #8b5a2b;
+    padding: 0.8em 1em; margin: 0.6cm 0;
+    background: rgba(139,90,43,0.03);
+    page-break-before: always;
+    page-break-inside: avoid;
+}}
+
+.theorem::before {{
+    content: "印";
+    display: block;
+    width: 1.8em;
+    border: 1.5px solid #a23535;
+    color: #a23535;
+    font-weight: 700; font-size: 9pt;
+    line-height: 1.4; text-align: center;
+    padding: 0.05em 0.25em;
+    margin-bottom: 0.4em; letter-spacing: 0;
+}}
+
+/* ===== Code ===== */
+code {{
+    font-family: "SF Mono", "Menlo", "Courier New", monospace;
+    font-size: 9pt; background: #f0ece0;
+    padding: 0.15em 0.4em;
+    border-radius: 2px; color: #5a4a3a;
+}}
+
+pre {{
+    background: #f4f0e6; border: 1px solid #e0dccf;
+    border-radius: 2px; padding: 0.8em 1em; margin: 0.5cm 0;
+    font-size: 9pt; line-height: 1.5;
+    overflow-x: auto; page-break-inside: avoid;
+}}
+
+pre code {{
+    background: none; padding: 0; border-radius: 0;
+}}
+
+/* ===== Tables — 赭石上下框 ===== */
+table {{
+    width: 100%; max-width: 100%; border-collapse: collapse;
+    margin: 0.6cm 0; font-size: 9.5pt; box-sizing: border-box;
+}}
+
+thead {{
+    display: table-header-group;
+}}
+
+thead tr {{
+    border-top: 0.5px solid #8b5a2b;
+    border-bottom: 0.5px solid #8b5a2b;
+}}
+
+th {{
+    padding: 0.5em 0.8em; text-align: left;
+    font-weight: 600; color: #4a4a4a; font-size: 9pt;
+}}
+
+td {{
+    padding: 0.5em 0.8em; text-align: left; vertical-align: top;
+    border-bottom: 0.5px solid #e8e4d8;
+}}
+
+tbody tr {{
+    page-break-inside: avoid;
+}}
+
+tbody tr:last-child {{
+    border-bottom: 0.5px solid #8b5a2b;
+}}
+
+/* ===== Lists ===== */
+ul {{
+    margin: 0.4em 0; padding-left: 2em;
+    list-style-type: disc;
+}}
+
+ol {{
+    margin: 0.4em 0; padding-left: 2em;
+    list-style-type: decimal;
+}}
+
+li {{
+    margin-bottom: 0.25em;
+}}
+
+li::marker {{
+    color: #8b5a2b;
+}}
+
+/* ===== Emphasis ===== */
+strong {{
+    font-weight: 600; color: #1a1a1a;
+}}
+
+em {{
+    font-style: italic; color: #4a4a4a;
+}}
+
+/* ===== Horizontal rule ===== */
+hr {{
+    border: none; height: 0.5px;
+    background: linear-gradient(90deg,
+        transparent, rgba(139,115,85,0.3), transparent);
+    margin: 0.8cm 0;
+}}
+
+/* ===== Links ===== */
+a {{
+    word-break: break-all; color: #8b5a2b; text-decoration: none;
+}}
+
+/* ===== Images ===== */
+img {{
+    max-width: 100%; height: auto;
+}}
+
+/* ===== Page break helpers ===== */
+figure, blockquote, table, pre,
+.intro-block, .quote-box, .memo-section, .theorem {{
+    page-break-inside: avoid;
+}}
+
+h1, h2, h3, h4 {{
+    page-break-inside: avoid;
+}}
+
+/* ===== Overflow protection ===== */
+pre, table, figure, img, svg, blockquote,
+.intro-block, .quote-box, .memo-section {{
+    max-width: 100%; box-sizing: border-box;
+}}
+</style>
+</head>
+<body class="cover-page">
+
+<!-- ===== Cover ===== -->
+<div class="cover">
+    <div class="ink-dot-1"></div>
+    <div class="ink-dot-2"></div>
+    <div class="ink-dot-3"></div>
+    <div class="ink-line"></div>
+    <div class="cover-content">
+        <div class="cover-seal">{cover_label}</div>
+        <h1 class="cover-title">{title}</h1>
+        <div class="cover-divider"></div>
+        <p class="cover-subtitle">{subtitle}</p>
+        <div class="cover-meta">
+            <p>{author_line}</p>
+            <p>{date_line}</p>
+        </div>
+    </div>
+</div>
+
+<!-- ===== TOC ===== -->
+<div class="toc-page">
+    <div class="toc-title">目 &ensp; 次</div>
+    <ul class="toc-list">
+{toc_items}
+    </ul>
+</div>
+
+<!-- ===== Body ===== -->
+{body}
+
+</body>
+</html>

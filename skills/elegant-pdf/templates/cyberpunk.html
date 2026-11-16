@@ -1,0 +1,416 @@
+<!-- elegant-pdf template — Cyberpunk Archive style -->
+<!DOCTYPE html>
+<html lang="{lang}">
+<head>
+<meta charset="UTF-8">
+<title>{title}</title>
+<style>
+/* ===== Cyberpunk Archive ===== */
+/* Design DNA: terminal interface + data as sacred + neon on dark */
+
+/* ===== Reset ===== */
+body {{
+    margin: 0; padding: 0;
+    font-family: "Noto Sans CJK SC", "Source Han Sans SC", "PingFang SC", "Helvetica Neue", sans-serif;
+    font-size: 9.5pt; line-height: 1.7;
+    color: #e8edf2; background: #0a0e17;
+    string-set: doctitle "{running_title}";
+}}
+
+/* ===== Page ===== */
+@page {{
+    size: A4; margin: 18mm 16mm 20mm 16mm;
+    background: #0a0e17;
+    @top-left {{
+        content: "[ " string(doctitle) " ]";
+        font-size: 7pt; color: #00ff9d;
+        font-family: "Courier New", monospace;
+        text-transform: uppercase; letter-spacing: 0.15em;
+    }}
+    @top-right {{
+        content: "";
+        font-size: 7pt; color: #00a8ff;
+        font-family: "Courier New", monospace;
+    }}
+    @bottom-center {{
+        content: "PAGE_" counter(page);
+        font-size: 7pt; color: #3a4a5a;
+        font-family: "Courier New", monospace;
+    }}
+}}
+
+@page cover {{
+    margin: 0;
+    @top-left {{ content: none; }}
+    @top-right {{ content: none; }}
+    @bottom-center {{ content: none; }}
+    background: #0a0e17;
+}}
+
+@page toc {{
+    @top-left {{ content: none; }}
+    @top-right {{ content: none; }}
+    background: #0a0e17;
+}}
+
+/* ===== Cover ===== */
+.cover {{
+    page: cover; width: 210mm; height: 297mm; margin: 0;
+    position: relative; overflow: hidden; page-break-after: always;
+    background: #0a0e17;
+}}
+
+.cover-status-bar {{
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 32px; background: #00ff9d;
+    display: flex; align-items: center; padding: 0 15px;
+    font-family: "Courier New", monospace;
+    font-size: 8pt; color: #0a0e17; font-weight: 700;
+    letter-spacing: 0.2em; text-transform: uppercase;
+}}
+
+.cover-scanlines {{
+    position: absolute; inset: 0;
+    background-image: repeating-linear-gradient(
+        0deg, transparent, transparent 2px,
+        rgba(0, 255, 157, 0.015) 2px, rgba(0, 255, 157, 0.015) 4px
+    );
+    pointer-events: none;
+}}
+
+.cover-corner-tl {{
+    position: absolute; top: 25mm; left: 20mm;
+    width: 30px; height: 30px;
+    border-top: 2px solid #00ff9d; border-left: 2px solid #00ff9d;
+}}
+
+.cover-corner-tr {{
+    position: absolute; top: 25mm; right: 20mm;
+    width: 30px; height: 30px;
+    border-top: 2px solid #00a8ff; border-right: 2px solid #00a8ff;
+}}
+
+.cover-corner-bl {{
+    position: absolute; bottom: 25mm; left: 20mm;
+    width: 30px; height: 30px;
+    border-bottom: 2px solid #00a8ff; border-left: 2px solid #00a8ff;
+}}
+
+.cover-corner-br {{
+    position: absolute; bottom: 25mm; right: 20mm;
+    width: 30px; height: 30px;
+    border-bottom: 2px solid #00ff9d; border-right: 2px solid #00ff9d;
+}}
+
+.cover-binary {{
+    position: absolute; right: 25mm; bottom: 45mm;
+    font-family: "Courier New", monospace;
+    font-size: 6pt; color: rgba(0, 168, 255, 0.08);
+    writing-mode: vertical-rl; letter-spacing: 0.2em;
+    line-height: 1.4;
+}}
+
+.cover-grid-bg {{
+    position: absolute; inset: 0;
+    background-image:
+        linear-gradient(rgba(0, 255, 157, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 157, 0.02) 1px, transparent 1px);
+    background-size: 8mm 8mm;
+}}
+
+.cover-content {{
+    position: absolute; left: 20mm; top: 50%;
+    transform: translateY(-50%); width: 55%; z-index: 1;
+}}
+
+.cover-label {{
+    font-family: "Courier New", monospace;
+    font-size: 8pt; color: #00ff9d; letter-spacing: 0.3em;
+    text-transform: uppercase; margin-bottom: 15mm;
+    border: 1px solid #00ff9d; display: inline-block;
+    padding: 3px 10px;
+}}
+
+.cover-title {{
+    font-family: "Noto Sans CJK SC", "Source Han Sans SC", "Helvetica Neue", sans-serif;
+    font-size: 34pt; font-weight: 900; color: #ffffff;
+    margin-bottom: 8mm; line-height: 1.2; letter-spacing: 0.02em;
+    text-shadow: 0 0 20px rgba(0, 255, 157, 0.3);
+    border: none !important; page-break-before: auto !important;
+}}
+
+.cover-subtitle {{
+    font-size: 12pt; color: #8a9aaa; font-weight: 300;
+    margin-bottom: 20mm; line-height: 1.5;
+}}
+
+.cover-divider {{
+    width: 60mm; height: 2px;
+    background: linear-gradient(90deg, #00ff9d, #00a8ff);
+    margin-bottom: 12mm;
+}}
+
+.cover-meta {{
+    font-family: "Courier New", monospace;
+    font-size: 8pt; color: #5a6a7a; line-height: 2.2;
+}}
+
+.cover-meta p {{ margin: 0.1em 0; }}
+
+/* ===== TOC ===== */
+.toc-page {{
+    page: toc; page-break-after: always;
+    background: #0a0e17;
+}}
+
+.toc-title {{
+    font-family: "Courier New", monospace;
+    font-size: 18pt; font-weight: 700; color: #00ff9d;
+    margin-bottom: 15mm; margin-top: 5mm;
+    letter-spacing: 0.2em; text-transform: uppercase;
+}}
+
+.toc-title::before {{
+    content: ">>> ";
+    color: #00a8ff;
+}}
+
+.toc-list {{
+    list-style: none; padding: 0; margin: 0;
+}}
+
+.toc-list li {{
+    margin-bottom: 0.3em;
+}}
+
+.toc-list a {{
+    color: #c8d4e0; text-decoration: none; display: block;
+    padding: 0.35em 0; border-bottom: 1px solid rgba(0, 168, 255, 0.08);
+    font-size: 9.5pt;
+}}
+
+.toc-list a::after {{
+    content: "      " target-counter(attr(href), page);
+    /* leader(".") removed: WeasyPrint renders it as garbled chars */
+    float: right; color: #3a4a5a; font-family: "Courier New", monospace;
+}}
+
+.toc-l1 > a {{
+    font-weight: 700; font-size: 10pt; color: #00ff9d;
+    border-bottom-color: rgba(0, 255, 157, 0.15); margin-top: 0.5em;
+}}
+
+.toc-l2 {{
+    padding-left: 2em; font-size: 9pt;
+}}
+
+/* ===== Headings ===== */
+h1 {{
+    font-family: "Noto Sans CJK SC", "Source Han Sans SC", "Helvetica Neue", sans-serif;
+    font-size: 20pt; font-weight: 900; color: #ffffff;
+    margin-top: 0; margin-bottom: 8mm; padding: 0;
+    page-break-before: always;
+    string-set: doctitle content();
+}}
+
+h1::before {{
+    content: ">>> ";
+    font-family: "Courier New", monospace;
+    font-size: 0.5em; color: #00a8ff; vertical-align: middle;
+}}
+
+body.cover-page h1:first-of-type {{
+    page-break-before: auto;
+}}
+
+h1::after {{
+    content: "";
+    display: block; width: 100%; height: 1px;
+    background: linear-gradient(90deg, #00ff9d, transparent);
+    margin-top: 3mm;
+}}
+
+h2 {{
+    font-family: "Noto Sans CJK SC", "Source Han Sans SC", "Helvetica Neue", sans-serif;
+    font-size: 13pt; font-weight: 700; color: #f2f6fa;
+    margin-top: 10mm; margin-bottom: 4mm;
+    padding-bottom: 2mm;
+    border-bottom: 1px solid rgba(0, 168, 255, 0.15);
+    page-break-after: avoid;
+}}
+
+h3 {{
+    font-family: "Noto Sans CJK SC", "Source Han Sans SC", "Helvetica Neue", sans-serif;
+    font-size: 10.5pt; font-weight: 700; color: #e8edf2;
+    margin-top: 8mm; margin-bottom: 3mm;
+    page-break-after: avoid;
+}}
+
+h4 {{
+    font-family: "Noto Sans CJK SC", "Source Han Sans SC", "Helvetica Neue", sans-serif;
+    font-size: 9.5pt; font-weight: 700; color: #b0c0d0;
+    margin-top: 6mm; margin-bottom: 2mm;
+}}
+
+/* ===== Paragraphs ===== */
+p {{
+    margin: 0.3em 0; orphans: 2; widows: 2;
+}}
+
+/* ===== Blockquotes ===== */
+blockquote {{
+    background: rgba(0, 168, 255, 0.04);
+    border: 1px solid rgba(0, 168, 255, 0.1);
+    padding: 1em 1.2em; margin: 8mm 0;
+    font-size: 9pt; color: #b0c0d0;
+    position: relative;
+}}
+
+blockquote::before {{
+    content: "[!]";
+    position: absolute; top: -0.6em; left: 1em;
+    font-family: "Courier New", monospace;
+    font-size: 8pt; color: #00a8ff; background: #0a0e17;
+    padding: 0 6px;
+}}
+
+blockquote p {{ margin: 0.2em 0; }}
+
+/* ===== Code ===== */
+code {{
+    font-family: "Courier New", "SF Mono", monospace;
+    font-size: 8.5pt; background: rgba(0, 255, 157, 0.05);
+    padding: 0.15em 0.5em; border-radius: 2px; color: #00ff9d;
+}}
+
+pre {{
+    background: #0d1117; border: 1px solid rgba(0, 168, 255, 0.1);
+    padding: 1em; margin: 6mm 0;
+    font-size: 8pt; line-height: 1.5; overflow-x: auto;
+    page-break-inside: avoid;
+}}
+
+pre code {{ background: none; padding: 0; color: #e8edf2; }}
+
+/* ===== Tables ===== */
+table {{
+    width: 100%; max-width: 100%; border-collapse: collapse;
+    margin: 8mm 0; font-size: 9pt; box-sizing: border-box;
+}}
+
+thead tr {{
+    border-top: 2px solid #00ff9d;
+    border-bottom: 1px solid rgba(0, 255, 157, 0.3);
+    background: rgba(0, 255, 157, 0.03);
+}}
+
+th {{
+    padding: 0.6em 0.8em; text-align: left;
+    font-weight: 600; color: #00ff9d;
+    font-family: "Courier New", monospace;
+    font-size: 7.5pt; letter-spacing: 0.1em; text-transform: uppercase;
+}}
+
+td {{
+    padding: 0.5em 0.8em; text-align: left; vertical-align: top;
+    border-bottom: 0.5px solid rgba(0, 168, 255, 0.06);
+}}
+
+tbody tr:last-child td {{ border-bottom: 2px solid rgba(0, 168, 255, 0.2); }}
+
+tr {{ page-break-inside: avoid; }}
+
+/* ===== Lists ===== */
+ul {{
+    margin: 0.3em 0; padding-left: 2em;
+    list-style-type: none;
+}}
+ul li::before {{
+    content: ">";
+    display: inline-block; width: 1.5em; margin-left: -1.5em;
+    color: #00ff9d; font-family: "Courier New", monospace;
+    font-size: 0.85em;
+}}
+
+ol {{
+    margin: 0.3em 0; padding-left: 2em;
+    list-style-type: decimal;
+}}
+ol li::marker {{
+    color: #00a8ff; font-family: "Courier New", monospace;
+}}
+
+li {{ margin-bottom: 0.2em; }}
+
+/* ===== Status tags ===== */
+.status-verified {{
+    display: inline-block;
+    border: 1px solid #00ff9d; color: #00ff9d;
+    padding: 1px 8px; font-family: "Courier New", monospace;
+    font-size: 7.5pt; letter-spacing: 0.1em;
+}}
+
+/* ===== Emphasis ===== */
+strong {{ font-weight: 700; color: #ffffff; }}
+em {{ font-style: italic; color: #00a8ff; }}
+
+/* ===== Horizontal rule ===== */
+hr {{
+    border: none; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 157, 0.2), rgba(0, 168, 255, 0.2), transparent);
+    margin: 10mm 0;
+}}
+
+/* ===== Links ===== */
+a {{ word-break: break-all; color: #00a8ff; text-decoration: none; }}
+
+/* ===== Images ===== */
+img {{ max-width: 100%; height: auto; }}
+
+/* ===== Page break helpers ===== */
+figure, blockquote, table, pre {{ page-break-inside: avoid; }}
+h1, h2, h3, h4 {{ page-break-inside: avoid; }}
+
+/* ===== Overflow protection ===== */
+pre, table, figure, img, svg, blockquote {{
+    max-width: 100%; box-sizing: border-box;
+}}
+</style>
+</head>
+<body class="cover-page">
+
+<!-- ===== Cover ===== -->
+<div class="cover">
+    <div class="cover-status-bar">SYS.ONLINE // {cover_label}</div>
+    <div class="cover-scanlines"></div>
+    <div class="cover-grid-bg"></div>
+    <div class="cover-corner-tl"></div>
+    <div class="cover-corner-tr"></div>
+    <div class="cover-corner-bl"></div>
+    <div class="cover-corner-br"></div>
+    <div class="cover-binary">01001000 01000101 01010010 01001101 01000101 01010011</div>
+    <div class="cover-content">
+        <div class="cover-label">{cover_label}</div>
+        <h1 class="cover-title">{title}</h1>
+        <p class="cover-subtitle">{subtitle}</p>
+        <div class="cover-divider"></div>
+        <div class="cover-meta">
+            <p>AUTHOR: {author_line}</p>
+            <p>DATE: {date_line}</p>
+        </div>
+    </div>
+</div>
+
+<!-- ===== TOC ===== -->
+<div class="toc-page">
+    <div class="toc-title">INDEX</div>
+    <ul class="toc-list">
+{toc_items}
+    </ul>
+</div>
+
+<!-- ===== Body ===== -->
+{body}
+
+</body>
+</html>
